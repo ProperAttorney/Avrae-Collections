@@ -1,0 +1,92 @@
+[
+	{
+		"name": "Server",
+		"skill": "acrobatics",
+		"blurb": "serves some food!"
+	},
+	{
+		"name": "Stable Keeper",
+		"skill": "animalHandling",
+		"blurb": "cares for some animals!"
+	},
+	{
+		"name": "Researcher",
+		"skill": "arcana",
+		"blurb": "does some research!"
+	},
+	{
+		"name": "Supply Runner",
+		"skill": "athletics",
+		"blurb": "moves some supplies!"
+	},
+	{
+		"name": "Card Dealer",
+		"skill": "deception",
+		"blurb": "deals some cards!"
+	},
+	{
+		"name": "Librarian",
+		"skill": "history",
+		"blurb": "organizes some books!"
+	},
+	{
+		"name": "Counselor",
+		"skill": "insight",
+		"blurb": "listens to some people!"
+	},
+	{
+		"name": "Floor Security",
+		"skill": "intimidation",
+		"blurb": "scares away some ruffians!"
+	},
+	{
+		"name": "Forensic Consultant",
+		"skill": "investigation",
+		"blurb": "looks for evidence!"
+	},
+	{
+		"name": "Nurse",
+		"skill": "medicine",
+		"blurb": "cares for some patients!"
+	},
+	{
+		"name": "Gardener",
+		"skill": "nature",
+		"blurb": "cares for some plants!"
+	},
+	{
+		"name": "Sentry",
+		"skill": "perception",
+		"blurb": "keeps an eye out for trouble!"
+	},
+	{
+		"name": "Performer",
+		"skill": "performance",
+		"blurb": "performs for an audience!"
+	},
+	{
+		"name": "Legal Advocate",
+		"skill": "persuasion",
+		"blurb": "pleads another's case!"
+	},
+	{
+		"name": "Temple Aid",
+		"skill": "religion",
+		"blurb": "does some religious work!"
+	},
+	{
+		"name": "Magician",
+		"skill": "sleightOfHand",
+		"blurb": "does some tricks!"
+	},
+	{
+		"name": "Security Consultant",
+		"skill": "stealth",
+		"blurb": "does penetration testing!"
+	},
+	{
+		"name": "Gatherer",
+		"skill": "survival",
+		"blurb": "gathers some vegetation!"
+	}
+]
