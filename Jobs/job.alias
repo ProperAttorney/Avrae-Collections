@@ -1,0 +1,161 @@
+<drac2>
+pf = ctx.prefix
+alias = ctx.alias
+
+a = argparse(&ARGS&)
+n = '\n'
+skills = load_json(get_gvar("19eeae84-247e-47e8-9b94-d881a85e864c"))
+jLog = load_json(get('joblog','[]'))
+
+#Load guild and personal job gvars, removing duplicates. If none exist, grants user default job gvar.
+gJobVars = load_json(get_svar('guildJobs','[]'))
+pJobVars = load_json(get('personalJobs','[]'))
+compendium = gJobVars + pJobVars
+cleanCompendium = []
+joblist = []
+if not compendium:
+	set_uvar('personalJobs',dump_json(["f9ff936c-b557-4ae1-b43c-bc5824aeb171"]))
+	compendium = load_json(get('personalJobs','[]'))
+for gvar in compendium:
+	if gvar not in cleanCompendium:
+		cleanCompendium.append(gvar)
+for gvar in cleanCompendium:
+	joblist += load_json(get_gvar(gvar))
+
+#Sets the time-based variables
+now = int(time())
+thisWeek = ceil((now-259200)/604800)-2693
+cutoff = ((thisWeek+2693)*604800)+259200
+
+#Sets some initial variables that I can't get to work better :(
+if jLog:
+	lastShift = int(jLog[-1]['e'])
+	shiftCount = [d['w'] for d in jLog]
+else:
+	lastShift = 0
+	shiftCount = [0]
+
+#My attempt at a subbing function
+if a.get("sub"):
+
+	#Unsubscribe the server from a gvar
+	if a.get("remove") and a.get("server") and "&4"+"&"!="&4&":
+		if "&4&" in gJobVars:
+			gJobVars.remove("&4&")
+			return f'multiline{n}{pf}svar "guildJobs" {dump_json(gJobVars)}{n}{pf}embed -title "You have turned down some jobs for the server!" -desc "You have unsubscribed the server from {"&3&"}." '
+		else:
+			return f'embed -title "{ctx.author.name} tries to turn down some jobs!" -desc "Your server is not subscribed to that gvar!" '
+
+	#Unsubscribe a personal gvar
+	if a.get("remove") and "&3"+"&"!="&3&":
+		if "&3&" in pJobVars:
+			pJobVars.remove("&3&")
+			set_uvar('personalJobs',dump_json(pJobVars))
+			return f'embed -title "{ctx.author.name} turns down some jobs!" -desc "You have unsubscribed from {"&3&"}." '
+		else:
+			return f'embed -title "{ctx.author.name} tries to down some jobs!" -desc "You are not subscribed to that gvar!" '
+
+	#Subscribe a server gvar
+	if a.get("server") and "&3"+"&"!="&3&" and len("&3&")==36:
+		gJobVars.append("&3&")
+		return f'multiline{n}{pf}svar "guildJobs" {dump_json(gJobVars)}{n}{pf}embed -title "{ctx.author.name} looks at some job listings!" -desc "You have subscribed the server to {"&3&"}." '
+
+	#Subscribe a personal gvar
+	if len("&2&")==36:
+		pJobVars.append("&2&")
+		set_uvar("personalJobs",dump_json(pJobVars))
+		return f'embed -title "{ctx.author.name} looks at some job listings!" -desc "You are now subscribed to {"&2&"}." '
+
+	#Push person gvars to the server
+	if a.get("serve"):
+		return f'multiline{n}{pf}svar "guildJobs" {dump_json(cleanCompendium)}{n}{pf}embed -title "{ctx.author.name} shared their job listings!" -desc "Everyone on the server can now work those jobs!" '
+	
+	#Pull servar gvars to personal collection
+	if a.get("sync"):
+		set_uvar("personalJobs",dump_json(cleanCompendium))
+		return f'embed -title "{ctx.author.name} copies some job listings!" -desc "You are now subscribed to everything the server was!" '
+
+	return f'embed -title "{ctx.author.name} looks at some job listings!" -desc "That is not a valid gvar address." '
+
+#Checks which job the input goes with, if any
+for x in joblist:
+	if "&*&".lower() in x["name"].lower():
+		job = x
+		jobPerf = vroll(f'{character().skills[x["skill"]].d20()}')
+
+#Opens the joblog if "log" in ARGS
+if a.get("log"):
+	if a.get("remove"):
+		for entry in jLog:
+			if a.last("week",0,type_=int) == int(entry["w"]) and a.last("shift",0,type_=int) == int(entry["s"]):
+				jLog.remove(entry)
+				set_cvar('joblog',dump_json(jLog))
+				return f'embed -title "{name} strikes an entry from their job log!" -desc "It is as if <t:{entry["e"]}> never happened." '
+		return f'embed -title "{name} tries to strike an entry from their job log!" -desc "There is no such entry in your job log!" '
+	TW = ""
+	LW = ""
+	thisWeek = a.last("week",thisWeek,type_=int)
+	lastWeek = thisWeek - 1
+	for entry in jLog:
+		if int(entry["w"]) == thisWeek:
+			TW += f'Shift {entry["s"]} <t:{entry["e"]}:d> <#{entry["l"]}> - {entry["j"]}{n}'
+		elif int(entry["w"]) == lastWeek:
+			LW += f'Shift {entry["s"]} <t:{entry["e"]}:d> <#{entry["l"]}> - {entry["j"]}{n}'
+	if TW and LW:
+		out = f'-f "Week {thisWeek}|{TW}" -f "Week {lastWeek}|{LW}"'
+	elif TW and not LW:
+		out = f'-f "Week {thisWeek}|{TW}"'
+	elif not TW and LW:
+		out = f'-f "Week {lastWeek}|{LW}"'
+	else:
+		out = f'-desc "There are no entries in your job log! Get to work!"'
+	return f'''embed -title "{name} checks their Job Log!" {out} '''
+
+#Clears the log if "clear" in ARGS
+if a.get("clear"):
+	character().delete_cvar('joblog')
+	return f'embed -title "{name} clears their Job Log!" -desc "Nothing to see here!" '
+
+#Shows a list of available jobs by skill if "list" in ARGS
+if a.get("list"):
+	popList = ""
+	for skill in skills:
+		matchJobs = []
+		for x in joblist:
+			if skill.lower() in x["skill"].lower():
+				matchJobs.append(f'{x["name"].title()}')
+		popList += f'-f "{skill[0].upper()+skill[1:]}|{", ".join(matchJobs)}" '
+	return f'embed -title "Job Listings" {popList} '
+
+#Returns the help embed if "help" in ARGS or if ARGS have less than 3 characters
+if a.get("help") or len("&*&")<3 or not get("job",0):
+	return f'''embed -title "{name} needs some help!" -desc "This alias is used to perform and log RP working activities." -f "{pf}{alias} list|This brings up a list of the possible jobs to be performed." -f "{pf}{alias} name of job|This will roll for how well you did on your job." -f "{pf}{alias} log [-week #]|This will bring up a log of your work history for this week and last week. If you enter a number, it will bring up the log for that week instead." -f "{pf}{alias} sub [remove] <gvar>|Subscribe or unsubscribe to a list of jobs!" -f "{pf}{alias} sub server [remove] <gvar>|Subscribe or unsubscribe the server to a list of jobs!" -f "{pf}{alias} sub [sync]|Copy the server jobs to a uvar." -f "{pf}{alias} sub serve|Share your personal jobs with the server." -f "{pf}{alias} help|What you're looking at now!" '''
+
+#Breaks out of code if it has been less than 24 hours since last worked shift
+if now-lastShift < 86400:
+	return f'''embed -title "Your shift has yet to start!" -desc "Try again at <t:{lastShift+86400}:t>" '''
+
+#Determines the length of the shift and outputs a little blurb
+if jobPerf.total < 10:
+	perf = 'Something has gone wrong! Quick, try to clean up your mess!'
+	dur = now+4500
+elif jobPerf.total > 9 and jobPerf.total < 20:
+	perf = 'An unevenful shift awaits you. Hope you have some way to pass the time!'
+	dur = now+3600
+else:
+	perf = "Wow! Someone really knows what they're doing!"
+	dur = now+2700
+
+#Creates the entry for the current shift, then adds it to the joblog cvar
+entry = {
+	"e":f'{now}',
+	"l":ctx.channel.id,
+	"w":thisWeek,
+	"s":shiftCount.count(thisWeek) + 1,
+	"j":job["name"]
+}
+jLog.append(entry)
+set_cvar('joblog',dump_json(jLog))
+
+return f'''embed -title "{name} {job["blurb"]}" -f "{jobPerf}|{perf}" -f "Time|You will finish your shift at <t:{dur}:t>" '''
+</drac2> {{f'-f "Work Week Ends|<t:{cutoff}>" -color {color} -thumb {image} -footer "Made by Julius Caesar#3180 and Doireann#8306"' if not a.get('sub') else ''}}
