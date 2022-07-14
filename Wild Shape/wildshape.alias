@@ -1,0 +1,159 @@
+<drac2>
+pf = ctx.prefix
+n = "\n"
+c = combat()
+ch = character()
+dL = ch.levels.get("Druid")
+sc = load_json(get("subclass", "{}"))
+moon = sc.get("DruidLevel") == "Moon"
+cN = "Wild Shape"
+settings = load_yaml(ch.cvars.get("wsSettings", "{}"))
+open_b, close_b = "<"+"drac2"+">", "</"+"drac2"+">"
+wsMeta = load_yaml(c.get_metadata("Wild Shape","{}"))
+out = []
+
+# Build a dictionary of default, personal, and server wildshape creatures.
+creatures = {}
+for gvar in set(["9cccbfb6-2ebd-4671-99e7-76e1ba80a5dc", "abca2418-43c0-477e-9db6-c324ece529d8"] + load_yaml(ch.cvars.get("wsCreatures","[]")) + load_yaml(get_svar("wsCreatures","[]"))):
+	creatures.update(load_yaml(get_gvar(gvar)))
+
+# Error catching for the counter is missing.
+if not ch.cc_exists(cN):
+	err(f"""You do not have a {cN} counter! See `!help cc create` for help making it manually.""")
+
+# Setting the maximum CR and limitations based on Druid level.
+if dL < 4:
+	maxCR = 0.25
+	limitation = ["swim","fly"]
+elif dL < 8:
+	maxCR = 0.5
+	limitation = ["fly"]
+else:
+	maxCR = 1
+	limitation = ["none"]
+if moon:
+	maxCR = max(dL//3,1)
+
+# Match the input creatures to catalog of creatures.
+match = []
+for creature in creatures:
+	if "&*&".lower() == creature.lower():
+		match = [creature]
+		break
+	elif "&*&".lower() in creature.lower():
+		match.append(creature)
+
+# Error catching for if the input results in a valid matched creature.
+if len(match) == 0:
+	err("There were no matched creatures. Please check your spelling!")
+elif len(match) > 1:
+	err("There were too many matched creatures. Please be more verbose!")
+
+cName = match[0]
+ele = "elemental" in cName.lower()
+
+# Error catching for if the matched creature is not allowed.
+if ele and (not moon or dL < 10):
+	err(f"""Only Moon Druids of level 10 or higher can {cN} into elementals.""")
+if creatures[cName]["cr"] > maxCR and not ele:
+	err(f"""You can only {cN} into a creature up to CR {maxCR}. {cName} is CR {creatures[cName]["cr"]}.""")
+if any([x.lower() in creatures[cName]["speed"].lower() for x in limitation]):
+	err(f"""You are unable {cN} into creatures with a {" or ".join(limitation)} speed.""")
+
+# Error catching for if Known Creatures setting is enabled
+if settings.get("RestrictKnown").lower() == "true":
+	if cName not in settings.get("Known",[]):
+		err(f"""You haven't seen {cName} before. Use `{pf}help {ctx.alias} settings` for instructions on adding known forms.""")
+
+# Error catching for not having enough uses of Wild Shape
+if not ch.get_cc(cN) and dL < 20:
+	err(f"""You are out of uses of {cN}!""")
+if ele and ch.get_cc(cN) < 2 and dL < 20:
+	err(f"""You need two uses of {cN} to turn into an elemental.""")
+
+# Actually modifying the cc value
+if dL < 20:
+	if ele:
+		ch.mod_cc(cN,-2)
+	else:
+		ch.mod_cc(cN,-1)
+
+form = creatures[cName]
+
+out.append(f"""{pf}tembed -title "{name} Wild Shapes Into A {cName}!" -f "{cN}|{"Unlimited" if dL > 19 else f"{ch.cc_str(cN)}(-2)" if ele else f"{ch.cc_str(cN)}(-1)"}" -footer "{pf+ctx.alias} | Made by Julius Caesar#3180" -color {color} -thumb {image}""")
+if c and c.me:
+	if (oID := wsMeta.get(name)) and (oCmbt := c.get_combatant(oID, strict=True)):
+		out.append(f"""{pf}i remove "{oCmbt.name}" """)
+		c.me.modify_hp(min(0, oCmbt.hp))
+		out.append(f"""{pf}embed -title "{name} Ends Their Wild Shape" -f "Damage Transfered|{c.me.hp_str()} ({min(0, oCmbt.hp)})" -footer "{pf}{ctx.alias} | Made by Julius Caesar#3180" -thumb {image} -color {color}""")
+	if not c.me.group:
+		g = f"""-group "{name} (Wild Shape)" """
+		out.append(f"""{pf}i opt "{name}" {g}""")
+	else:
+		g = f"""-group "{c.me.group}" """
+
+	add_list = [
+	f"""{pf}i add 0 "{cName} ({name})" """,
+	g,
+	f"""-pb {max(ch.stats.prof_bonus,form["pb"])}""",
+	f"""-strength {form["str"]}""",
+	f"""-dexterity {form["dex"]}""",
+	f"""-constitution {form["con"]}""",
+	f"""-intelligence {ch.stats.intelligence}""",
+	f"""-wisdom {ch.stats.wisdom}""",
+	f"""-charisma {ch.stats.charisma}""",
+	f"""-cr {dL}""",
+	f"""-type {"Elemental" if ele else "Beast"}""",
+	f"""-note "{form["speed"]}{f''' | {settings.get("Note","")}''' if settings.get("Note","") else ""}" """,
+	f"""-hp {form["hp"] + settings.get("HPBonus",0)}"""
+	]
+
+	profs = form["profs"] + [x for x,y in ch.skills if y.prof==1] + settings.get("Proficient", [])
+	add_list.extend([f"-prof {x}" for x in profs])
+
+	exps = form["exps"] + [x for x,y in ch.skills if y.prof==2] + settings.get("Expert", [])
+	add_list.extend([f"-exp {x}" for x in exps])
+
+	saves = form["saves"] + [x for x,y in ch.saves if y.prof==1] + settings.get("Save", [])
+	add_list.extend([f"-save {x}" for x in saves])
+
+	immune = form["immune"] + settings.get("Immune", [])
+	add_list.extend([f'-immune "{x}"' for x in immune])
+
+	resists = form["resists"] + settings.get("Resistant", [])
+	add_list.extend([f'-resist "{x}"' for x in resists])
+
+	vulns = form["vuln"] + settings.get("Vulnerable", [])
+	add_list.extend([f'-vuln "{x}"' for x in vulns])
+	
+	ACs = []
+	ACbonus = settings.get("ACBonus", 0)
+	ACs.append(form["ac"] + ACbonus)
+	if settings.get("AltAC").lower() == "true":
+		if ch.levels.get("Monk"):
+			ACs.append(10 + form["dex"]//2 + ch.stats.wisdom//2 + ACbonus)
+		if ch.levels.get("Barbarian"):
+			ACs.append(10 + form["dex"]//2 + form["con"]//2 + ACbonus)
+	add_list.append(f"-ac {max(ACs)}")
+
+	out.append(" ".join(add_list))
+
+	out.append(out.pop(0))
+
+	for attack in form["attacks"]:
+		for auto in attack["attack"]["automation"]:
+			if auto.get("type") == "target":
+				for ef in auto["effects"]:
+					if ef.get("type") == "attack":
+						ef["attackBonus"] += settings.get("AttackBonus", 0)
+						for subEf in ef["hit"]:
+							if subEf.get("type") == "damage":
+								subEf["damage"] =  settings.get("DamageBonus")+" + "+subEf["damage"] if settings.get("DamageBonus") else subEf["damage"]
+
+	out[-1] += (f""" {open_b}combat().get_combatant("{cName} ({name})").add_effect(name="Attacks",{'''passive_effects=load_yaml({"magical_damage": True}),''' if dL > 5 and moon else ""}attacks=load_yaml('''{dump_yaml(form["attacks"])}''')){close_b}""")
+	out[-1] += (f""" {open_b}wsMeta = load_yaml('''{wsMeta}'''){close_b}""")
+	out[-1] += (f""" {open_b}wsMeta["{name}"] = combat().get_combatant("{cName} ({name})", strict=True).id{close_b}""")
+	out[-1] += (f""" {open_b}combat().set_metadata("Wild Shape", dump_yaml(wsMeta)){close_b}""")
+	
+return f'multiline{n}{n.join(out)}'
+</drac2>
