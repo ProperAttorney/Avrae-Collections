@@ -11,7 +11,7 @@ showAll = argparse(&ARGS&).get("all")
 
 # Build a dictionary of default, personal, and server wildshape creatures.
 creatures = {}
-for gvar in set(["9cccbfb6-2ebd-4671-99e7-76e1ba80a5dc", "abca2418-43c0-477e-9db6-c324ece529d8"] + load_yaml(ch.cvars.get("wsCreatures","[]")) + load_yaml(get_svar("wsCreatures","[]"))):
+for gvar in set(["413e9249-6296-468b-8c75-74c1bedeb276", "97f66515-10a4-4942-8318-7bb7b4de1fdd"] + load_yaml(ch.cvars.get("wsCreatures","[]")) + load_yaml(get_svar("wsCreatures","[]"))):
 	creatures.update(load_yaml(get_gvar(gvar)))
 
 # Setting the maximum CR and limitations based on Druid level.
