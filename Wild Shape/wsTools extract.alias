@@ -1,0 +1,40 @@
+<drac2>
+pf = ctx.prefix
+n = "\n"
+c = combat()
+a = argparse(&ARGS&)
+toExport = {}
+
+if not c:
+	err(f"This command must be used in initiative! Use `{pf}help {ctx.alias} extract` for more information.")
+
+targs = [c.get_combatant(x) for x in a.get("t")]
+for t in targs:
+	toExport[t.monster_name] = {
+    "pb" : t.stats.prof_bonus,
+    "str" : t.stats.strength,
+    "dex" : t.stats.dexterity,
+    "con" : t.stats.constitution,
+    "int" : t.stats.intelligence,
+    "wis" : t.stats.wisdom,
+    "cha" : t.stats.charisma,
+    "cr" : t.levels.get("Monster"),
+    "exps" : [x for x,y in t.skills if y.prof==2],
+    "profs" : [x for x,y in t.skills if y.prof==1],
+    "saves" : [x for x,y in t.saves if y.prof==1],
+    "vuln" : [x.dtype for x in t.resistances.vuln],
+    "resists" : [x.dtype for x in t.resistances.resist],
+    "immune" : [x.dtype for x in t.resistances.immune],
+    "ac" : t.ac,
+    "hp" : t.hp,
+    "attacks" : [{"attack":n.raw} for n in t.attacks],
+    "speed": a.last("speed", "30 ft.").lower()
+	}
+
+for arg in &ARGS&:
+	if len(arg)==36:
+		existing = load_yaml(get_gvar(arg))
+		existing.update(toExport)
+		return f"""gvar edit {arg} {dump_yaml(existing)}"""
+return f"""gvar create {dump_yaml(toExport)}"""
+</drac2>

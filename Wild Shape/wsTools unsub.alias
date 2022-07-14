@@ -1,0 +1,11 @@
+<drac2>
+ch = character()
+pCreatureGVARS = load_yaml(ch.cvars.get("wsCreatures", "[]"))
+
+if "&1&" not in pCreatureGVARS:
+	err("You are not subscribed to `&1&`.")
+
+pCreatureGVARS.remove("&1&")
+ch.set_cvar("wsCreatures", dump_yaml(pCreatureGVARS))
+return "echo Success! You are no longer subscribed to `&1&`."
+</drac2>

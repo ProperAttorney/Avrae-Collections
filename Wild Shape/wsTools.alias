@@ -1,0 +1,16 @@
+<drac2>
+pf = ctx.prefix
+al = ctx.alias
+return f"""embed
+-title "Wild Shape Tools"
+-desc "These tools are intended to be used by DMs, or with the approval of your DM. Do not add creatures to your Wild Shape forms list without first making sure it is allowed."
+-f "extract|This alias will extract information from creatures and put it in a gvar. Use `{pf}help {al} extract` for more information."
+-f "sub|This alias will add a gvar, such as one made with `{pf+al} extract`, to your Wild Shape forms list."
+-f "sub server|This alias will add a gvar, such as one made with `{pf+al} extract`, to your server's Wild Shape forms list."
+-f "unsub| This alias will remove a gvar from your Wild Shape forms list."
+-f "unsub server| This alias will remove a gvar from your server's Wild Shape forms list."
+-footer "{pf+al} | Made by Julius Caesar#3180"
+-color {color}
+-thumb https://cdn.discordapp.com/attachments/879523235669094462/997241056380846151/unknown.png
+"""
+</drac2>

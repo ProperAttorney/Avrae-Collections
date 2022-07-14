@@ -1,0 +1,104 @@
+<drac2>
+ch = character()
+settings = load_yaml(ch.cvars.get("wsSettings", "{}"))
+a = argparse(&ARGS&)
+emb = f"""embed -title "{name}'s Wild Shape Settings" -footer "{ctx.prefix+ctx.alias} | Made by Julius Caesar#3180" -color {color} -thumb {image}"""
+
+SKILL_NAMES = (
+    "acrobatics",
+    "animalHandling",
+    "arcana",
+    "athletics",
+    "deception",
+    "history",
+    "initiative",
+    "insight",
+    "intimidation",
+    "investigation",
+    "medicine",
+    "nature",
+    "perception",
+    "performance",
+    "persuasion",
+    "religion",
+    "sleightOfHand",
+    "stealth",
+    "survival",
+    "strength",
+    "dexterity",
+    "constitution",
+    "intelligence",
+    "wisdom",
+    "charisma",
+)
+
+SAVE_NAMES = (
+	"strengthSave",
+	"dexteritySave",
+	"constitutionSave",
+	"intelligenceSave",
+	"wisdomSave",
+	"charismaSave"
+)
+
+SetOptions = [
+("RestrictKnown", str, "False"),
+("Note", str, "None."),
+("HPBonus", int, "0"),
+("ACBonus", int, "0"),
+("AltAC", str, "False"),
+("AttackBonus", int, "0"),
+("DamageBonus", str, "0")
+]
+
+ListOptions = [
+("Proficient", str, "None"),
+("Expert", str, "None"),
+("Save", str, "None"),
+("Immune", str, "None"),
+("Resistant", str, "None"),
+("Vulnerable", str, "None"),
+("Known", str, "None")
+]
+
+# Build a dictionary of default, personal, and server wildshape creatures.
+creatures = {}
+for gvar in ["9cccbfb6-2ebd-4671-99e7-76e1ba80a5dc", "abca2418-43c0-477e-9db6-c324ece529d8"] + load_yaml(ch.cvars.get("wsCreatures","[]")) + load_yaml(get_svar("wsCreatures","[]")):
+	creatures.update(load_yaml(get_gvar(gvar)))
+
+creatureNames = [x.lower() for x in creatures.keys()]
+known = settings.get("Known", [])
+
+for creature in a.get("learn"):
+	if creature.lower() in creatureNames:
+		known.append(creature.lower())
+	else:
+		err(f"""{creature.title()} is not a valid creature. Use `{ctx.prefix+ctx.alias} list all` to see a full list of valid creature names.""")
+
+for creature in a.get("forget"):
+	if creature.lower() in settings.get("Known",[]):
+		known.remove(creature.lower())
+	else:
+		err(f"""{creature.title()} is not a valid creature. Use `{ctx.prefix+ctx.alias} settings` to see known creature names.""")
+settings["Known"] = known
+
+for skill in a.get("Proficient") + a.get("Expert"):
+	if skill not in SKILL_NAMES:
+		err(f"""{skill} is not a valid skills name. Use `{ctx.prefix}help {ctx.alias} settings` to see a full list of skill names.""")
+for ability in a.get("Save"):
+	if ability not in SAVE_NAMES:
+		err(f"""{skill} is not a valid save name. Use `{ctx.prefix}help {ctx.alias} settings` to see a full list of save names.""")		
+
+for option, oType, default in SetOptions:
+	if a.last(option) != None:
+		settings[option] = a.last(option, type_=oType)
+	emb += f""" -f "{option}|{settings.get(option, default)}|inline" """
+
+for option, oType, default in ListOptions:
+	if a.last(option):
+		settings[option] = a.get(option, type_=oType)
+	emb += f""" -f "{option}|{", ".join([x.title() for x in settings[option]]) if settings.get(option) else default.title()}|inline" """
+
+ch.set_cvar("wsSettings", dump_yaml(settings))
+return emb
+</drac2>

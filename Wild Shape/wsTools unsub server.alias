@@ -1,0 +1,12 @@
+<drac2>
+pf = ctx.prefix
+sCreatureGVARS = load_yaml(get_svar("wsCreatures","[]"))
+
+if "&1&" in sCreatureGVARS:
+	err("You are not subscribed to `&1&`.")
+
+sCreatureGVARS.remove("&1&")
+return f"""multiline
+{pf}svar wsCreatures {dump_yaml(sCreatureGVARS)}
+{pf}echo Success! Your server is no longer subscribed to `&1&`."""
+</drac2>

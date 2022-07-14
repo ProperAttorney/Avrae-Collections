@@ -1,0 +1,15 @@
+<drac2>
+ch = character()
+pCreatureGVARS = load_yaml(ch.cvars.get("wsCreatures", "[]"))
+
+if len("&1&") != 36:
+	err("`&1&` is not a valid gvar address.")
+if "&1&" in pCreatureGVARS:
+	err("You are already subscribed to `&1&`.")
+if typeof(load_yaml(get_gvar("&1&"))) != "SafeDict":
+	err("`&1&` is not formatted correctly!")
+
+pCreatureGVARS.append("&1&")
+ch.set_cvar("wsCreatures", dump_yaml(pCreatureGVARS))
+return "echo Success! You are now subscribed to `&1&`."
+</drac2>

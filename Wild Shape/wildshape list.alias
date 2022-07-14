@@ -1,0 +1,59 @@
+<drac2>
+pf = ctx.prefix
+n = "\n"
+ch = character()
+dL = ch.levels.get("Druid")
+sc = load_json(get("subclass", "{}"))
+moon = sc.get("DruidLevel") == "Moon"
+settings = load_yaml(ch.cvars.get("wsSettings", "{}"))
+emb = f"""embed -title "{name}'s Wild Shape Forms" -footer "{ctx.prefix+ctx.alias} | Made by Julius Caesar#3180" -color {color} -thumb {image}"""
+showAll = argparse(&ARGS&).get("all")
+
+# Build a dictionary of default, personal, and server wildshape creatures.
+creatures = {}
+for gvar in set(["9cccbfb6-2ebd-4671-99e7-76e1ba80a5dc", "abca2418-43c0-477e-9db6-c324ece529d8"] + load_yaml(ch.cvars.get("wsCreatures","[]")) + load_yaml(get_svar("wsCreatures","[]"))):
+	creatures.update(load_yaml(get_gvar(gvar)))
+
+# Setting the maximum CR and limitations based on Druid level.
+if dL < 4:
+	maxCR = 0.25
+	limitation = ["swim","fly"]
+elif dL < 8:
+	maxCR = 0.5
+	limitation = ["fly"]
+else:
+	maxCR = 1
+	limitation = ["none"]
+if moon:
+	maxCR = max(dL//3,1)
+
+validCreatues = []
+if showAll:
+	validCreatues = creatures.keys()
+else:
+	for creature in creatures:
+		if (creatures[creature]["cr"] <= maxCR or ("elemental" in creature.lower() and moon and dL >= 10)) and not any([x.lower() in creatures[creature]["speed"].lower() for x in limitation]):
+			validCreatues.append(creature)
+	if settings.get("RestrictKnown").lower() == "true":
+		restrictedValidCreatures = [x for x in validCreatues if x.lower() in settings.get("Known", [])]
+		validCreatues = restrictedValidCreatures
+
+cOut = {}
+for creature in validCreatues:
+	if cOut.get(creatures[creature]["cr"]):
+		cOut[creatures[creature]["cr"]].append(creature)
+	else:
+		cOut[creatures[creature]["cr"]] = [creature]
+
+sortedOut = {}
+CRs = list(cOut.keys())
+CRs.sort()
+for cr in CRs:
+	sortedOut[cr] = cOut[cr]
+
+for cr in sortedOut:
+	sortedOut[cr].sort()
+	emb += f""" -f "{cr}|{n.join(sortedOut[cr])}|inline" """
+
+return emb
+</drac2>
