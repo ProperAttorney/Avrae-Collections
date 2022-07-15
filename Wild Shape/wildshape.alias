@@ -60,7 +60,7 @@ if any([x.lower() in creatures[cName]["speed"].lower() for x in limitation]):
 	err(f"""You are unable {cN} into creatures with a {" or ".join(limitation)} speed.""")
 
 # Error catching for if Known Creatures setting is enabled
-if settings.get("RestrictKnown").lower() == "true":
+if settings.get("RestrictKnown", "False").lower() == "true":
 	if cName not in settings.get("Known",[]):
 		err(f"""You haven't seen {cName} before. Use `{pf}help {ctx.alias} settings` for instructions on adding known forms.""")
 
@@ -130,7 +130,7 @@ if c and c.me:
 	ACs = []
 	ACbonus = settings.get("ACBonus", 0)
 	ACs.append(form["ac"] + ACbonus)
-	if settings.get("AltAC").lower() == "true":
+	if settings.get("AltAC", "False").lower() == "true":
 		if ch.levels.get("Monk"):
 			ACs.append(10 + form["dex"]//2 + ch.stats.wisdom//2 + ACbonus)
 		if ch.levels.get("Barbarian"):
