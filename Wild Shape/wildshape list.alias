@@ -34,7 +34,7 @@ else:
 	for creature in creatures:
 		if (creatures[creature]["cr"] <= maxCR or ("elemental" in creature.lower() and moon and dL >= 10)) and not any([x.lower() in creatures[creature]["speed"].lower() for x in limitation]):
 			validCreatues.append(creature)
-	if settings.get("RestrictKnown").lower() == "true":
+	if settings.get("RestrictKnown", "False").lower() == "true":
 		restrictedValidCreatures = [x for x in validCreatues if x.lower() in settings.get("Known", [])]
 		validCreatues = restrictedValidCreatures
 
