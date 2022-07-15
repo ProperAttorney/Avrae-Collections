@@ -9,7 +9,6 @@ moon = sc.get("DruidLevel") == "Moon"
 cN = "Wild Shape"
 settings = load_yaml(ch.cvars.get("wsSettings", "{}"))
 open_b, close_b = "<"+"drac2"+">", "</"+"drac2"+">"
-wsMeta = load_yaml(c.get_metadata("Wild Shape","{}"))
 out = []
 
 # Build a dictionary of default, personal, and server wildshape creatures.
@@ -82,6 +81,8 @@ form = creatures[cName]
 
 out.append(f"""{pf}tembed -title "{name} Wild Shapes Into A {cName}!" -f "{cN}|{"Unlimited" if dL > 19 else f"{ch.cc_str(cN)}(-2)" if ele else f"{ch.cc_str(cN)}(-1)"}" -footer "{pf+ctx.alias} | Made by Julius Caesar#3180" -color {color} -thumb {image}""")
 if c and c.me:
+	wsMeta = load_yaml(c.get_metadata("Wild Shape","{}"))
+
 	if (oID := wsMeta.get(name)) and (oCmbt := c.get_combatant(oID, strict=True)):
 		out.append(f"""{pf}i remove "{oCmbt.name}" """)
 		c.me.modify_hp(min(0, oCmbt.hp))
