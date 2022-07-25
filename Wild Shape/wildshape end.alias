@@ -11,7 +11,7 @@ if c:
 	if c.me and (ws:=c.get_combatant(wsMeta.get(name), strict=True)):
 		out.append(f"""{pf}i remove "{ws.name}" """)
 		c.me.modify_hp(min(0, ws.hp))
-		embed = {pf} + embed + f""" -f "Damage Transfered|{c.me.hp_str()} ({min(0, ws.hp)})" """
+		embed = pf + embed + f""" -f "Damage Transfered|{c.me.hp_str()} ({min(0, ws.hp)})" """
 		if "Wild Shape" in c.me.group:
 			out.append(f"""{pf}i opt "{name}" -group none""")
 		out.append(embed)
