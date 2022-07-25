@@ -9,9 +9,15 @@ settings = load_yaml(ch.cvars.get("wsSettings", "{}"))
 emb = f"""embed -title "{name}'s Wild Shape Forms" -footer "{ctx.prefix+ctx.alias} | Made by Julius Caesar#3180" -color {color} -thumb {image}"""
 showAll = argparse(&ARGS&).get("all")
 
+# Transfer cvar subs to uvar.
+if (cGVARS := load_yaml(ch.cvars.get("wsCreatures","[]"))):
+	cGVARS += load_yaml(get("wsSubscriptions", "[]"))
+	set_uvar("wsSubscriptions", dump_yaml(set(cGVARS)))
+	ch.delete_cvar("wsCreatures")
+
 # Build a dictionary of default, personal, and server wildshape creatures.
 creatures = {}
-for gvar in set(["413e9249-6296-468b-8c75-74c1bedeb276", "97f66515-10a4-4942-8318-7bb7b4de1fdd"] + load_yaml(ch.cvars.get("wsCreatures","[]")) + load_yaml(get_svar("wsCreatures","[]"))):
+for gvar in set(["413e9249-6296-468b-8c75-74c1bedeb276", "97f66515-10a4-4942-8318-7bb7b4de1fdd"] + load_yaml(get("wsSubscriptions","[]")) + load_yaml(get_svar("wsCreatures","[]"))):
 	creatures.update(load_yaml(get_gvar(gvar)))
 
 # Setting the maximum CR and limitations based on Druid level.
