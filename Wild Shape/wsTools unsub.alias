@@ -1,11 +1,18 @@
 <drac2>
 ch = character()
-pCreatureGVARS = load_yaml(ch.cvars.get("wsCreatures", "[]"))
+
+# Transfer cvar subs to uvar.
+if (cGVARS := load_yaml(ch.cvars.get("wsCreatures","[]"))):
+	cGVARS += load_yaml(get("wsSubscriptions", "[]"))
+	set_uvar("wsSubscriptions", dump_yaml(set(cGVARS)))
+	ch.delete_cvar("wsCreatures")
+
+pCreatureGVARS = load_yaml(get("wsSubscriptions", "[]"))
 
 if "&1&" not in pCreatureGVARS:
 	err("You are not subscribed to `&1&`.")
 
 pCreatureGVARS.remove("&1&")
-ch.set_cvar("wsCreatures", dump_yaml(pCreatureGVARS))
+set_uvar("wsSubscriptions", dump_yaml(pCreatureGVARS))
 return "echo Success! You are no longer subscribed to `&1&`."
 </drac2>
