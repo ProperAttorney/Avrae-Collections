@@ -11,9 +11,15 @@ settings = load_yaml(ch.cvars.get("wsSettings", "{}"))
 open_b, close_b = "<"+"drac2"+">", "</"+"drac2"+">"
 out = []
 
+# Transfer cvar subs to uvar.
+if (cGVARS := load_yaml(ch.cvars.get("wsCreatures","[]"))):
+	cGVARS += load_yaml(get("wsSubscriptions", "[]"))
+	set_uvar("wsSubscriptions", dump_yaml(set(cGVARS)))
+	ch.delete_cvar("wsCreatures")
+
 # Build a dictionary of default, personal, and server wildshape creatures.
 creatures = {}
-for gvar in set(["413e9249-6296-468b-8c75-74c1bedeb276", "97f66515-10a4-4942-8318-7bb7b4de1fdd"] + load_yaml(ch.cvars.get("wsCreatures","[]")) + load_yaml(get_svar("wsCreatures","[]"))):
+for gvar in set(["413e9249-6296-468b-8c75-74c1bedeb276", "97f66515-10a4-4942-8318-7bb7b4de1fdd"] + load_yaml(get("wsSubscriptions","[]")) + load_yaml(get_svar("wsCreatures","[]"))):
 	creatures.update(load_yaml(get_gvar(gvar)))
 
 # Error catching for the counter is missing.
@@ -36,10 +42,10 @@ if moon:
 # Match the input creatures to catalog of creatures.
 match = []
 for creature in creatures:
-	if "&*&".lower() == creature.lower():
+	if "&*&".lower().strip(""""'""") == creature.lower():
 		match = [creature]
 		break
-	elif "&*&".lower() in creature.lower():
+	elif "&*&".lower().strip(""""'""") in creature.lower():
 		match.append(creature)
 
 # Error catching for if the input results in a valid matched creature.
