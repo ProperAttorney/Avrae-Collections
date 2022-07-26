@@ -1,0 +1,318 @@
+- _v: 2
+  name: Dash
+  automation:
+    - type: text
+      text: >-
+        When you take the Dash action, you gain extra movement for the current
+        turn. The increase equals your speed, after applying any modifiers. With
+        a speed of 30 feet, for example, you can move up to 60 feet on your turn
+        if you dash.
+
+
+        Any increase or decrease to your speed changes this additional movement by the same amount. If your speed of 30 feet is reduced to 15 feet, for instance, you can move up to 30 feet this turn if you dash
+  verb: decides to
+  proper: true
+  activation_type: 1
+- _v: 2
+  name: Disengage
+  automation:
+    - type: text
+      text: If you take the Disengage action, your movement doesn’t provoke
+        opportunity attacks for the rest of the turn.
+  verb: decides to
+  proper: true
+  activation_type: 1
+- _v: 2
+  name: Dodge
+  automation:
+    - type: text
+      text: When you take the Dodge action, you focus entirely on avoiding attacks.
+        Until the start of your next turn, any attack roll made against you has
+        disadvantage if you can see the attacker, and you make Dexterity saving
+        throws with advantage. You lose this benefit if you are incapacitated or
+        if your speed drops to 0.
+    - type: target
+      target: self
+      effects:
+        - type: ieffect2
+          name: Dodging
+          duration: "1"
+          effects:
+            save_adv:
+              - dex
+          attacks: []
+          buttons: []
+          end: false
+          conc: false
+          desc: >-
+            Until the start of your next turn:
+             - Any attack roll made against you has disadvantage if you can see the attacker.
+             - You make Dexterity saving throws with advantage.
+            You lose this benefit if you are incapacitated or if your speed drops to 0.
+          stacking: false
+  verb: decides to
+  proper: true
+  activation_type: 1
+- _v: 2
+  name: Help
+  automation:
+    - type: text
+      text: >-
+        You can lend your aid to another creature in the completion of a task.
+        When you take the Help action, the creature you aid gains advantage on
+        the next ability check it makes to perform the task you are helping
+        with, provided that it makes the check before the start of your next
+        turn.
+
+
+        Alternatively, you can aid a friendly creature in attacking a creature within 5 feet of you. You feint, distract the target, or in some other way team up to make your ally’s attack more effective. If your ally attacks the target before your next turn, the first attack roll is made with advantage.
+    - type: target
+      target: self
+      effects:
+        - type: ieffect2
+          name: Helping
+          duration: "1"
+          attacks: []
+          buttons: []
+          end: false
+          conc: false
+          desc: You lend your aid to another creature in the completion of a task.
+          stacking: false
+          save_as: Helping
+    - type: target
+      target: all
+      effects:
+        - type: ieffect2
+          name: Being Helped
+          attacks: []
+          buttons: []
+          end: false
+          conc: false
+          desc: >-
+            You gain advantage on the next ability check you make to perform the task
+            you are being helped with, provided that you makes the check before
+            the start of your helper's next turn.
+
+            Alternatively, if you attack the target your ally is distracting before their next turn, the first attack roll is made with advantage.
+          stacking: false
+          parent: Helping
+  verb: tries to
+  proper: true
+  activation_type: 1
+- _v: 2
+  name: Hide
+  automation:
+    - type: text
+      text: When you take the Hide action, you make a Dexterity (Stealth) check in an
+        attempt to hide, following the rules for hiding.
+    - type: target
+      target: self
+      effects:
+        - type: check
+          ability: stealth
+  verb: tries to
+  proper: true
+  activation_type: 1
+- _v: 2
+  name: Search (Perception)
+  automation:
+    - type: text
+      text: When you take the Search action, you devote your attention to finding
+        something. Depending on the nature of your search, the DM might have you
+        make a Wisdom (Perception) check or an Intelligence (Investigation)
+        check.
+    - type: target
+      target: self
+      effects:
+        - type: check
+          ability: perception
+  verb: tries to
+  proper: true
+  activation_type: 1
+- _v: 2
+  name: Search (Investigation)
+  automation:
+    - type: text
+      text: When you take the Search action, you devote your attention to finding
+        something. Depending on the nature of your search, the DM might have you
+        make a Wisdom (Perception) check or an Intelligence (Investigation)
+        check.
+    - type: target
+      target: self
+      effects:
+        - type: check
+          ability: investigation
+  verb: tries to
+  proper: true
+  activation_type: 1
+- _v: 2
+  name: Ready
+  automation:
+    - type: text
+      text: >-
+        You take the Ready action on your turn, which lets you act using your
+        reaction before the start of your next turn.
+
+
+        First, you decide what perceivable circumstance will trigger your reaction. Then, you choose the action you will take in response to that trigger, or you choose to move up to your speed in response to it.
+
+
+        When the trigger occurs, you can either take your reaction right after the trigger finishes or ignore the trigger.
+
+
+        When you ready a spell, you cast it as normal but hold its energy, which you release with your reaction when the trigger occurs. To be readied, a spell must have a casting time of 1 action, and holding onto the spell’s magic requires concentration. If your concentration is broken, the spell dissipates without taking effect. For example, if you are concentrating on the web spell and ready magic missile, your web spell ends, and if you take damage before you release magic missile with your reaction, your concentration might be broken.
+  verb: gets
+  proper: true
+  activation_type: 1
+- _v: 2
+  name: Use An Object
+  automation:
+    - type: text
+      text: You normally interact with an object while doing something else, such as
+        when you draw a sword as part of an attack. When an object requires your
+        action for its use, you take the Use an Object action. This action is
+        also useful when you want to interact with more than one object on your
+        turn.
+  verb: decides to
+  proper: true
+  activation_type: 1
+- _v: 2
+  name: Grapple
+  automation:
+    - type: target
+      target: 1
+      effects:
+        - type: check
+          ability:
+            - acrobatics
+            - athletics
+          contestAbility:
+            - athletics
+          success: []
+          fail:
+            - type: ieffect2
+              name: Grappled
+              attacks: []
+              buttons:
+                - automation:
+                    - type: target
+                      target: children
+                      effects:
+                        - type: check
+                          ability:
+                            - athletics
+                          contestAbility:
+                            - acrobatics
+                            - athletics
+                          success: []
+                          fail:
+                            - type: remove_ieffect
+                          contestTie: fail
+                  label: Escape Grapple
+                  verb: attempts to break out of the grapple
+                  style: "3"
+              end: false
+              conc: false
+              desc: Grappled by {{caster.name}}
+              stacking: false
+              save_as: grapple
+          contestTie: neither
+    - type: condition
+      condition: not lastCheckDidPass
+      onTrue:
+        - type: target
+          target: self
+          effects:
+            - type: ieffect2
+              name: Grappling
+              attacks: []
+              buttons:
+                - automation:
+                    - type: remove_ieffect
+                      removeParent: always
+                  label: Release Grapple
+                  verb: lets go of their target
+                  style: "1"
+              end: false
+              conc: false
+              desc: Grappling {{targets[0].name if str(targets[0])!=targets[0] else
+                targets[0]}}
+              stacking: false
+              parent: grapple
+      onFalse: []
+      errorBehaviour: "false"
+    - type: text
+      text: >-
+        When you want to grab a creature or wrestle with it, you can use the
+        Attack action to make a special melee attack, a grapple. If you’re able
+        to make multiple attacks with the Attack action, this attack replaces
+        one of them.
+
+
+        The target of your grapple must be no more than one size larger than you and must be within your reach. Using at least one free hand, you try to seize the target by making a grapple check instead of an attack roll: a Strength (Athletics) check contested by the target’s Strength (Athletics) or Dexterity (Acrobatics) check (the target chooses the ability to use). You succeed automatically if the target is incapacitated. If you succeed, you subject the target to the grappled condition. The condition specifies the things that end it, and you can release the target whenever you like (no action required).
+  verb: tries to
+  proper: true
+- _v: 2
+  name: Shove (Prone)
+  automation:
+    - type: target
+      target: 1
+      effects:
+        - type: check
+          ability:
+            - acrobatics
+            - athletics
+          contestAbility:
+            - athletics
+          success: []
+          fail:
+            - type: ieffect2
+              name: Prone
+              effects:
+                attack_advantage: "-1"
+              attacks: []
+              buttons:
+                - automation:
+                    - type: remove_ieffect
+                  label: Stand Up
+                  verb: stands up
+                  style: "3"
+              end: false
+              conc: false
+              desc: A prone creature's only movement option is to crawl, unless it stands up
+                and thereby ends the condition.
+              stacking: false
+          contestTie: neither
+    - type: text
+      text: >-
+        Using the Attack action, you can make a special melee attack to shove a
+        creature, either to knock it prone or push it away from you. If you’re
+        able to make multiple attacks with the Attack action, this attack
+        replaces one of them.
+
+
+        The target must be no more than one size larger than you and must be within your reach. Instead of making an attack roll, you make a Strength (Athletics) check contested by the target’s Strength (Athletics) or Dexterity (Acrobatics) check (the target chooses the ability to use). You succeed automatically if the target is incapacitated. If you succeed, you either knock the target prone or push it 5 feet away from you.
+- _v: 2
+  name: Shove (Away)
+  automation:
+    - type: target
+      target: 1
+      effects:
+        - type: check
+          ability:
+            - acrobatics
+            - athletics
+          contestAbility:
+            - athletics
+          success: []
+          fail: []
+          contestTie: neither
+    - type: text
+      text: >-
+        Using the Attack action, you can make a special melee attack to shove a
+        creature, either to knock it prone or push it away from you. If you’re
+        able to make multiple attacks with the Attack action, this attack
+        replaces one of them.
+
+
+        The target must be no more than one size larger than you and must be within your reach. Instead of making an attack roll, you make a Strength (Athletics) check contested by the target’s Strength (Athletics) or Dexterity (Acrobatics) check (the target chooses the ability to use). You succeed automatically if the target is incapacitated. If you succeed, you either knock the target prone or push it 5 feet away from you.
