@@ -1,0 +1,13 @@
+<drac2>
+aImport = load_yaml(get_gvar("917c0254-a78e-4a54-920c-3b803635f8db"))
+aList = []
+
+for attack in aImport:
+  aList.append({"attack":attack})
+
+for combatant in combat().combatants:
+  if combatant.creature_type:
+    combatant.add_effect(name="Base Actions",attacks=aList)
+
+return "echo Base actions added to non-player characters!"
+</drac2>
