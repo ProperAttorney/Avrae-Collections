@@ -1,0 +1,2068 @@
+Abi-Dalzim's Horrid Wilting:
+  L: 8
+  T: Action
+  ID: 2367
+Absorb Elements:
+  L: 1
+  T: Reaction
+  ID: 2368
+Acid Splash:
+  L: Cantrip
+  T: Action
+  ID: 1989
+Aganazzar's Scorcher:
+  L: 2
+  T: Action
+  ID: 2369
+Aid:
+  L: 2
+  T: Action
+  ID: 1990
+Alarm:
+  L: 1
+  T: 1 Min.
+  ID: 1991
+Alter Self:
+  L: 2
+  T: Action
+  ID: 1992
+Animal Friendship:
+  L: 1
+  T: Action
+  ID: 1993
+Animal Messenger:
+  L: 2
+  T: Action
+  ID: 1994
+Animal Shapes:
+  L: 8
+  T: Action
+  ID: 1995
+Animate Dead:
+  L: 3
+  T: 1 Min.
+  ID: 1996
+Animate Objects:
+  L: 5
+  T: Action
+  ID: 1997
+Antilife Shell:
+  L: 5
+  T: Action
+  ID: 1998
+Antimagic Field:
+  L: 8
+  T: Action
+  ID: 1999
+Antipathy/Sympathy:
+  L: 8
+  T: 1 Hr.
+  ID: 2000
+Arcane Eye:
+  L: 4
+  T: Action
+  ID: 2001
+Arcane Gate:
+  L: 6
+  T: Action
+  ID: 2358
+Arcane Lock:
+  L: 2
+  T: Action
+  ID: 2003
+Armor of Agathys:
+  L: 1
+  T: Action
+  ID: 2310
+Arms of Hadar:
+  L: 1
+  T: Action
+  ID: 2311
+Ashardalon's Stride:
+  L: 3
+  T: Bonus
+  ID: 1183862
+Astral Projection:
+  L: 9
+  T: 1 Hr.
+  ID: 2006
+Augury:
+  L: 2
+  T: 1 Min.
+  ID: 2007
+Aura of Life:
+  L: 4
+  T: Action
+  ID: 2342
+Aura of Purity:
+  L: 4
+  T: Action
+  ID: 2343
+Aura of Vitality:
+  L: 3
+  T: Action
+  ID: 2333
+Awaken:
+  L: 5
+  T: 8 Hr.
+  ID: 2008
+Bane:
+  L: 1
+  T: Action
+  ID: 2009
+Banishing Smite:
+  L: 5
+  T: Bonus
+  ID: 2351
+Banishment:
+  L: 4
+  T: Action
+  ID: 2010
+Barkskin:
+  L: 2
+  T: Action
+  ID: 2011
+Beacon of Hope:
+  L: 3
+  T: Action
+  ID: 2012
+Beast Bond:
+  L: 1
+  T: Action
+  ID: 2370
+Beast Sense:
+  L: 2
+  T: Action
+  ID: 2325
+Bestow Curse:
+  L: 3
+  T: Action
+  ID: 2013
+Bigby's Hand:
+  L: 5
+  T: Action
+  ID: 2352
+Blade Barrier:
+  L: 6
+  T: Action
+  ID: 2015
+Blade Ward:
+  L: Cantrip
+  T: Action
+  ID: 2307
+Blade of Disaster:
+  L: 9
+  T: Bonus
+  ID: 654072
+Bless:
+  L: 1
+  T: Action
+  ID: 2016
+Blight:
+  L: 4
+  T: Action
+  ID: 2017
+Blinding Smite:
+  L: 3
+  T: Bonus
+  ID: 2334
+Blindness/Deafness:
+  L: 2
+  T: Action
+  ID: 2018
+Blink:
+  L: 3
+  T: Action
+  ID: 2019
+Blur:
+  L: 2
+  T: Action
+  ID: 2020
+Bones of the Earth:
+  L: 6
+  T: Action
+  ID: 2371
+Booming Blade:
+  L: Cantrip
+  T: Action
+  ID: 2410
+Borrowed Knowledge:
+  L: 2
+  T: Action
+  ID: 1239802
+Branding Smite:
+  L: 2
+  T: Bonus
+  ID: 2326
+Burning Hands:
+  L: 1
+  T: Action
+  ID: 2021
+Call Lightning:
+  L: 3
+  T: Action
+  ID: 2022
+Calm Emotions:
+  L: 2
+  T: Action
+  ID: 2023
+Catapult:
+  L: 1
+  T: Action
+  ID: 2372
+Catnap:
+  L: 3
+  T: Action
+  ID: 14754
+Cause Fear:
+  L: 1
+  T: Action
+  ID: 14758
+Ceremony:
+  L: 1
+  T: 1 Hr.
+  ID: 14760
+Chain Lightning:
+  L: 6
+  T: Action
+  ID: 2024
+Chaos Bolt:
+  L: 1
+  T: Action
+  ID: 14761
+Charm Monster:
+  L: 4
+  T: Action
+  ID: 14763
+Charm Person:
+  L: 1
+  T: Action
+  ID: 2025
+Chill Touch:
+  L: Cantrip
+  T: Action
+  ID: 2026
+Chromatic Orb:
+  L: 1
+  T: Action
+  ID: 2312
+Circle of Death:
+  L: 6
+  T: Action
+  ID: 2027
+Circle of Power:
+  L: 5
+  T: Action
+  ID: 2353
+Clairvoyance:
+  L: 3
+  T: 10 Min.
+  ID: 2028
+Clone:
+  L: 8
+  T: 1 Hr.
+  ID: 2029
+Cloud of Daggers:
+  L: 2
+  T: Action
+  ID: 2327
+Cloudkill:
+  L: 5
+  T: Action
+  ID: 2030
+Color Spray:
+  L: 1
+  T: Action
+  ID: 2031
+Command:
+  L: 1
+  T: Action
+  ID: 2032
+Commune:
+  L: 5
+  T: 1 Min.
+  ID: 2033
+Commune with Nature:
+  L: 5
+  T: 1 Min.
+  ID: 2034
+Compelled Duel:
+  L: 1
+  T: Bonus
+  ID: 2313
+Comprehend Languages:
+  L: 1
+  T: Action
+  ID: 2035
+Compulsion:
+  L: 4
+  T: Action
+  ID: 2036
+Cone of Cold:
+  L: 5
+  T: Action
+  ID: 2037
+Confusion:
+  L: 4
+  T: Action
+  ID: 2038
+Conjure Animals:
+  L: 3
+  T: Action
+  ID: 2039
+Conjure Barrage:
+  L: 3
+  T: Action
+  ID: 2335
+Conjure Celestial:
+  L: 7
+  T: 1 Min.
+  ID: 2040
+Conjure Elemental:
+  L: 5
+  T: 1 Min.
+  ID: 2041
+Conjure Fey:
+  L: 6
+  T: 1 Min.
+  ID: 2042
+Conjure Minor Elementals:
+  L: 4
+  T: 1 Min.
+  ID: 2043
+Conjure Volley:
+  L: 5
+  T: Action
+  ID: 2354
+Conjure Woodland Beings:
+  L: 4
+  T: Action
+  ID: 2044
+Contact Other Plane:
+  L: 5
+  T: 1 Min.
+  ID: 2045
+Contagion:
+  L: 5
+  T: Action
+  ID: 2046
+Contingency:
+  L: 6
+  T: 10 Min.
+  ID: 2047
+Continual Flame:
+  L: 2
+  T: Action
+  ID: 2048
+Control Flames:
+  L: Cantrip
+  T: Action
+  ID: 2374
+Control Water:
+  L: 4
+  T: Action
+  ID: 2049
+Control Weather:
+  L: 8
+  T: 10 Min.
+  ID: 2050
+Control Winds:
+  L: 5
+  T: Action
+  ID: 2375
+Cordon of Arrows:
+  L: 2
+  T: Action
+  ID: 2328
+Counterspell:
+  L: 3
+  T: Reaction
+  ID: 2051
+Create Bonfire:
+  L: Cantrip
+  T: Action
+  ID: 2373
+Create Food and Water:
+  L: 3
+  T: Action
+  ID: 2052
+Create Homunculus:
+  L: 6
+  T: 1 Hr.
+  ID: 14765
+Create Magen:
+  L: 7
+  T: 1 Hr.
+  ID: 654073
+Create Undead:
+  L: 6
+  T: 1 Min.
+  ID: 2054
+Create or Destroy Water:
+  L: 1
+  T: Action
+  ID: 2053
+Creation:
+  L: 5
+  T: 1 Min.
+  ID: 2055
+Crown of Madness:
+  L: 2
+  T: Action
+  ID: 2329
+Crown of Stars:
+  L: 7
+  T: Action
+  ID: 14827
+Crusader's Mantle:
+  L: 3
+  T: Action
+  ID: 2336
+Cure Wounds:
+  L: 1
+  T: Action
+  ID: 2056
+Dancing Lights:
+  L: Cantrip
+  T: Action
+  ID: 2057
+Danse Macabre:
+  L: 5
+  T: Action
+  ID: 14830
+Dark Star:
+  L: 8
+  T: Action
+  ID: 416800
+Darkness:
+  L: 2
+  T: Action
+  ID: 2058
+Darkvision:
+  L: 2
+  T: Action
+  ID: 2059
+Dawn:
+  L: 5
+  T: Action
+  ID: 14831
+Daylight:
+  L: 3
+  T: Action
+  ID: 2060
+Death Ward:
+  L: 4
+  T: Action
+  ID: 2061
+Delayed Blast Fireball:
+  L: 7
+  T: Action
+  ID: 2062
+Demiplane:
+  L: 8
+  T: Action
+  ID: 2063
+Destructive Wave:
+  L: 5
+  T: Action
+  ID: 2355
+Detect Evil and Good:
+  L: 1
+  T: Action
+  ID: 2064
+Detect Magic:
+  L: 1
+  T: Action
+  ID: 2065
+Detect Poison and Disease:
+  L: 1
+  T: Action
+  ID: 2066
+Detect Thoughts:
+  L: 2
+  T: Action
+  ID: 2067
+Dimension Door:
+  L: 4
+  T: Action
+  ID: 2068
+Disguise Self:
+  L: 1
+  T: Action
+  ID: 2069
+Disintegrate:
+  L: 6
+  T: Action
+  ID: 2070
+Dispel Evil and Good:
+  L: 5
+  T: Action
+  ID: 2071
+Dispel Magic:
+  L: 3
+  T: Action
+  ID: 2072
+Dissonant Whispers:
+  L: 1
+  T: Action
+  ID: 2314
+Distort Value:
+  L: 1
+  T: 1 Min.
+  ID: 188092
+Divination:
+  L: 4
+  T: Action
+  ID: 2073
+Divine Favor:
+  L: 1
+  T: Bonus
+  ID: 2074
+Divine Word:
+  L: 7
+  T: Bonus
+  ID: 2075
+Dominate Beast:
+  L: 4
+  T: Action
+  ID: 2076
+Dominate Monster:
+  L: 8
+  T: Action
+  ID: 2077
+Dominate Person:
+  L: 5
+  T: Action
+  ID: 2078
+Draconic Transformation:
+  L: 7
+  T: Bonus
+  ID: 1183863
+Dragon's Breath:
+  L: 2
+  T: Bonus
+  ID: 14832
+Drawmij's Instant Summons:
+  L: 6
+  T: 1 Min.
+  ID: 2359
+Dream:
+  L: 5
+  T: 1 Min.
+  ID: 2079
+Dream of the Blue Veil:
+  L: 7
+  T: 10 Min.
+  ID: 717915
+Druid Grove:
+  L: 6
+  T: 10 Min.
+  ID: 14834
+Druidcraft:
+  L: Cantrip
+  T: Action
+  ID: 2080
+Dust Devil:
+  L: 2
+  T: Action
+  ID: 2376
+Earth Tremor:
+  L: 1
+  T: Action
+  ID: 2378
+Earthbind:
+  L: 2
+  T: Action
+  ID: 2377
+Earthquake:
+  L: 8
+  T: Action
+  ID: 2081
+Eldritch Blast:
+  L: Cantrip
+  T: Action
+  ID: 2082
+Elemental Bane:
+  L: 4
+  T: Action
+  ID: 2379
+Elemental Weapon:
+  L: 3
+  T: Action
+  ID: 2337
+Encode Thoughts:
+  L: Cantrip
+  T: Action
+  ID: 83532
+Enemies Abound:
+  L: 3
+  T: Action
+  ID: 14836
+Enervation:
+  L: 5
+  T: Action
+  ID: 14869
+Enhance Ability:
+  L: 2
+  T: Action
+  ID: 2083
+Enlarge/Reduce:
+  L: 2
+  T: Action
+  ID: 2084
+Ensnaring Strike:
+  L: 1
+  T: Bonus
+  ID: 2315
+Entangle:
+  L: 1
+  T: Action
+  ID: 2085
+Enthrall:
+  L: 2
+  T: Action
+  ID: 2086
+Erupting Earth:
+  L: 3
+  T: Action
+  ID: 2380
+Etherealness:
+  L: 7
+  T: Action
+  ID: 2087
+Evard's Black Tentacles:
+  L: 4
+  T: Action
+  ID: 2344
+Expeditious Retreat:
+  L: 1
+  T: Bonus
+  ID: 2088
+Eyebite:
+  L: 6
+  T: Action
+  ID: 2089
+Fabricate:
+  L: 4
+  T: 10 Min.
+  ID: 2090
+Faerie Fire:
+  L: 1
+  T: Action
+  ID: 2091
+False Life:
+  L: 1
+  T: Action
+  ID: 2093
+Far Step:
+  L: 5
+  T: Bonus
+  ID: 14870
+Fast Friends:
+  L: 3
+  T: Action
+  ID: 188104
+Fear:
+  L: 3
+  T: Action
+  ID: 2094
+Feather Fall:
+  L: 1
+  T: Reaction
+  ID: 2095
+Feeblemind:
+  L: 8
+  T: Action
+  ID: 2096
+Feign Death:
+  L: 3
+  T: Action
+  ID: 2338
+Find Familiar:
+  L: 1
+  T: 1 Hr.
+  ID: 2097
+Find Greater Steed:
+  L: 4
+  T: 10 Min.
+  ID: 14871
+Find Steed:
+  L: 2
+  T: 10 Min.
+  ID: 2098
+Find Traps:
+  L: 2
+  T: Action
+  ID: 2100
+Find the Path:
+  L: 6
+  T: 1 Min.
+  ID: 2099
+Finger of Death:
+  L: 7
+  T: Action
+  ID: 2101
+Fire Bolt:
+  L: Cantrip
+  T: Action
+  ID: 2103
+Fire Shield:
+  L: 4
+  T: Action
+  ID: 2104
+Fire Storm:
+  L: 7
+  T: Action
+  ID: 2105
+Fireball:
+  L: 3
+  T: Action
+  ID: 2102
+Fizban's Platinum Shield:
+  L: 6
+  T: Bonus
+  ID: 1183864
+Flame Arrows:
+  L: 3
+  T: Action
+  ID: 2381
+Flame Blade:
+  L: 2
+  T: Bonus
+  ID: 2106
+Flame Strike:
+  L: 5
+  T: Action
+  ID: 2107
+Flaming Sphere:
+  L: 2
+  T: Action
+  ID: 2108
+Flesh to Stone:
+  L: 6
+  T: Action
+  ID: 2109
+Flock of Familiars:
+  L: 2
+  T: 1 Min.
+  ID: 92691
+Fly:
+  L: 3
+  T: Action
+  ID: 2111
+Fog Cloud:
+  L: 1
+  T: Action
+  ID: 2112
+Forbiddance:
+  L: 6
+  T: 10 Min.
+  ID: 2113
+Forcecage:
+  L: 7
+  T: Action
+  ID: 2114
+Foresight:
+  L: 9
+  T: 1 Min.
+  ID: 2115
+Fortune's Favor:
+  L: 2
+  T: 1 Min.
+  ID: 176232
+Freedom of Movement:
+  L: 4
+  T: Action
+  ID: 2116
+Friends:
+  L: Cantrip
+  T: Action
+  ID: 2308
+Frost Fingers:
+  L: 1
+  T: Action
+  ID: 654074
+Frostbite:
+  L: Cantrip
+  T: Action
+  ID: 2382
+Galder's Speedy Courier:
+  L: 4
+  T: Action
+  ID: 92692
+Galder's Tower:
+  L: 3
+  T: 10 Min.
+  ID: 92693
+Gaseous Form:
+  L: 3
+  T: Action
+  ID: 2118
+Gate:
+  L: 9
+  T: Action
+  ID: 2119
+Geas:
+  L: 5
+  T: 1 Min.
+  ID: 2120
+Gentle Repose:
+  L: 2
+  T: Action
+  ID: 2121
+Giant Insect:
+  L: 4
+  T: Action
+  ID: 2122
+Gift of Alacrity:
+  L: 1
+  T: 1 Min.
+  ID: 176233
+Gift of Gab:
+  L: 2
+  T: Reaction
+  ID: 188118
+Glibness:
+  L: 8
+  T: Action
+  ID: 2123
+Globe of Invulnerability:
+  L: 6
+  T: Action
+  ID: 2124
+Glyph of Warding:
+  L: 3
+  T: 1 Hr.
+  ID: 2125
+Goodberry:
+  L: 1
+  T: Action
+  ID: 2126
+Grasping Vine:
+  L: 4
+  T: Bonus
+  ID: 2345
+Gravity Fissure:
+  L: 6
+  T: Action
+  ID: 416801
+Gravity Sinkhole:
+  L: 4
+  T: Action
+  ID: 416802
+Grease:
+  L: 1
+  T: Action
+  ID: 2127
+Greater Invisibility:
+  L: 4
+  T: Action
+  ID: 2128
+Greater Restoration:
+  L: 5
+  T: Action
+  ID: 2129
+Green-Flame Blade:
+  L: Cantrip
+  T: Action
+  ID: 2411
+Guardian of Faith:
+  L: 4
+  T: Action
+  ID: 2130
+Guardian of Nature:
+  L: 4
+  T: Bonus
+  ID: 14872
+Guards and Wards:
+  L: 6
+  T: 10 Min.
+  ID: 2131
+Guidance:
+  L: Cantrip
+  T: Action
+  ID: 2132
+Guiding Bolt:
+  L: 1
+  T: Action
+  ID: 2133
+Gust:
+  L: Cantrip
+  T: Action
+  ID: 2383
+Gust of Wind:
+  L: 2
+  T: Action
+  ID: 2134
+Hail of Thorns:
+  L: 1
+  T: Bonus
+  ID: 2316
+Hallow:
+  L: 5
+  T: 24 Hr.
+  ID: 2135
+Hallucinatory Terrain:
+  L: 4
+  T: 10 Min.
+  ID: 2136
+Harm:
+  L: 6
+  T: Action
+  ID: 2137
+Haste:
+  L: 3
+  T: Action
+  ID: 2138
+Heal:
+  L: 6
+  T: Action
+  ID: 2139
+Healing Spirit:
+  L: 2
+  T: Bonus
+  ID: 14873
+Healing Word:
+  L: 1
+  T: Bonus
+  ID: 2140
+Heat Metal:
+  L: 2
+  T: Action
+  ID: 2141
+Hellish Rebuke:
+  L: 1
+  T: Reaction
+  ID: 2142
+Heroes' Feast:
+  L: 6
+  T: 10 Min.
+  ID: 2143
+Heroism:
+  L: 1
+  T: Action
+  ID: 2144
+Hex:
+  L: 1
+  T: Bonus
+  ID: 2317
+Hold Monster:
+  L: 5
+  T: Action
+  ID: 2146
+Hold Person:
+  L: 2
+  T: Action
+  ID: 2147
+Holy Aura:
+  L: 8
+  T: Action
+  ID: 2148
+Holy Weapon:
+  L: 5
+  T: Bonus
+  ID: 14874
+Hunger of Hadar:
+  L: 3
+  T: Action
+  ID: 2339
+Hunter's Mark:
+  L: 1
+  T: Bonus
+  ID: 2149
+Hypnotic Pattern:
+  L: 3
+  T: Action
+  ID: 2150
+Ice Knife:
+  L: 1
+  T: Action
+  ID: 2384
+Ice Storm:
+  L: 4
+  T: Action
+  ID: 2151
+Identify:
+  L: 1
+  T: 1 Min.
+  ID: 2152
+Illusory Dragon:
+  L: 8
+  T: Action
+  ID: 14876
+Illusory Script:
+  L: 1
+  T: 1 Min.
+  ID: 2153
+Immolation:
+  L: 5
+  T: Action
+  ID: 2385
+Immovable Object:
+  L: 2
+  T: Action
+  ID: 416803
+Imprisonment:
+  L: 9
+  T: 1 Min.
+  ID: 2154
+Incendiary Cloud:
+  L: 8
+  T: Action
+  ID: 2155
+Incite Greed:
+  L: 3
+  T: Action
+  ID: 188121
+Infernal Calling:
+  L: 5
+  T: 1 Min.
+  ID: 14877
+Infestation:
+  L: Cantrip
+  T: Action
+  ID: 14878
+Inflict Wounds:
+  L: 1
+  T: Action
+  ID: 2156
+Insect Plague:
+  L: 5
+  T: Action
+  ID: 2157
+Intellect Fortress:
+  L: 3
+  T: Action
+  ID: 718549
+Investiture of Flame:
+  L: 6
+  T: Action
+  ID: 2386
+Investiture of Ice:
+  L: 6
+  T: Action
+  ID: 2387
+Investiture of Stone:
+  L: 6
+  T: Action
+  ID: 2388
+Investiture of Wind:
+  L: 6
+  T: Action
+  ID: 2389
+Invisibility:
+  L: 2
+  T: Action
+  ID: 2159
+Invulnerability:
+  L: 9
+  T: Action
+  ID: 14879
+Jim's Glowing Coin:
+  L: 2
+  T: Action
+  ID: 188126
+Jim's Magic Missile:
+  L: 1
+  T: Action
+  ID: 188129
+Jump:
+  L: 1
+  T: Action
+  ID: 2161
+Kinetic Jaunt:
+  L: 2
+  T: Bonus
+  ID: 1239803
+Knock:
+  L: 2
+  T: Action
+  ID: 2162
+Legend Lore:
+  L: 5
+  T: 10 Min.
+  ID: 2163
+Leomund's Secret Chest:
+  L: 4
+  T: Action
+  ID: 2346
+Leomund's Tiny Hut:
+  L: 3
+  T: 1 Min.
+  ID: 2340
+Lesser Restoration:
+  L: 2
+  T: Action
+  ID: 2164
+Levitate:
+  L: 2
+  T: Action
+  ID: 2165
+Life Transference:
+  L: 3
+  T: Action
+  ID: 14880
+Light:
+  L: Cantrip
+  T: Action
+  ID: 2166
+Lightning Arrow:
+  L: 3
+  T: Bonus
+  ID: 2341
+Lightning Bolt:
+  L: 3
+  T: Action
+  ID: 2167
+Lightning Lure:
+  L: Cantrip
+  T: Action
+  ID: 2412
+Locate Animals or Plants:
+  L: 2
+  T: Action
+  ID: 2168
+Locate Creature:
+  L: 4
+  T: Action
+  ID: 2169
+Locate Object:
+  L: 2
+  T: Action
+  ID: 2170
+Longstrider:
+  L: 1
+  T: Action
+  ID: 2171
+Maddening Darkness:
+  L: 8
+  T: Action
+  ID: 14881
+Maelstrom:
+  L: 5
+  T: Action
+  ID: 2390
+Mage Armor:
+  L: 1
+  T: Action
+  ID: 2172
+Mage Hand:
+  L: Cantrip
+  T: Action
+  ID: 2173
+Magic Circle:
+  L: 3
+  T: 1 Min.
+  ID: 2174
+Magic Jar:
+  L: 6
+  T: 1 Min.
+  ID: 2175
+Magic Missile:
+  L: 1
+  T: Action
+  ID: 2176
+Magic Mouth:
+  L: 2
+  T: 1 Min.
+  ID: 2177
+Magic Stone:
+  L: Cantrip
+  T: Bonus
+  ID: 2391
+Magic Weapon:
+  L: 2
+  T: Bonus
+  ID: 2178
+Magnify Gravity:
+  L: 1
+  T: Action
+  ID: 416804
+Major Image:
+  L: 3
+  T: Action
+  ID: 2180
+Mass Cure Wounds:
+  L: 5
+  T: Action
+  ID: 2181
+Mass Heal:
+  L: 9
+  T: Action
+  ID: 2182
+Mass Healing Word:
+  L: 3
+  T: Bonus
+  ID: 2183
+Mass Polymorph:
+  L: 9
+  T: Action
+  ID: 14882
+Mass Suggestion:
+  L: 6
+  T: Action
+  ID: 2184
+Maximilian's Earthen Grasp:
+  L: 2
+  T: Action
+  ID: 2392
+Maze:
+  L: 8
+  T: Action
+  ID: 2185
+Meld into Stone:
+  L: 3
+  T: Action
+  ID: 2186
+Melf's Acid Arrow:
+  L: 2
+  T: Action
+  ID: 2330
+Melf's Minute Meteors:
+  L: 3
+  T: Action
+  ID: 2393
+Mending:
+  L: Cantrip
+  T: 1 Min.
+  ID: 2187
+Mental Prison:
+  L: 6
+  T: Action
+  ID: 14883
+Message:
+  L: Cantrip
+  T: Action
+  ID: 2188
+Meteor Swarm:
+  L: 9
+  T: Action
+  ID: 2189
+Mighty Fortress:
+  L: 8
+  T: 1 Min.
+  ID: 14474
+Mind Blank:
+  L: 8
+  T: Action
+  ID: 2190
+Mind Sliver:
+  L: Cantrip
+  T: Action
+  ID: 718568
+Mind Spike:
+  L: 2
+  T: Action
+  ID: 14482
+Minor Illusion:
+  L: Cantrip
+  T: Action
+  ID: 2191
+Mirage Arcane:
+  L: 7
+  T: 10 Min.
+  ID: 2192
+Mirror Image:
+  L: 2
+  T: Action
+  ID: 2193
+Mislead:
+  L: 5
+  T: Action
+  ID: 2194
+Misty Step:
+  L: 2
+  T: Bonus
+  ID: 2195
+Modify Memory:
+  L: 5
+  T: Action
+  ID: 2196
+Mold Earth:
+  L: Cantrip
+  T: Action
+  ID: 2394
+Moonbeam:
+  L: 2
+  T: Action
+  ID: 2197
+Mordenkainen's Faithful Hound:
+  L: 4
+  T: Action
+  ID: 2347
+Mordenkainen's Magnificent Mansion:
+  L: 7
+  T: 1 Min.
+  ID: 2362
+Mordenkainen's Private Sanctum:
+  L: 4
+  T: 10 Min.
+  ID: 2348
+Mordenkainen's Sword:
+  L: 7
+  T: Action
+  ID: 2004
+Motivational Speech:
+  L: 3
+  T: 1 Min.
+  ID: 188142
+Move Earth:
+  L: 6
+  T: Action
+  ID: 2198
+Nathair's Mischief:
+  L: 2
+  T: Action
+  ID: 1183865
+Negative Energy Flood:
+  L: 5
+  T: Action
+  ID: 14519
+Nondetection:
+  L: 3
+  T: Action
+  ID: 2199
+Nystul's Magic Aura:
+  L: 2
+  T: Action
+  ID: 2331
+Otiluke's Freezing Sphere:
+  L: 6
+  T: Action
+  ID: 2360
+Otiluke's Resilient Sphere:
+  L: 4
+  T: Action
+  ID: 2349
+Otto's Irresistible Dance:
+  L: 6
+  T: Action
+  ID: 2160
+Pass without Trace:
+  L: 2
+  T: Action
+  ID: 2201
+Passwall:
+  L: 5
+  T: Action
+  ID: 2200
+Phantasmal Force:
+  L: 2
+  T: Action
+  ID: 2332
+Phantasmal Killer:
+  L: 4
+  T: Action
+  ID: 2202
+Phantom Steed:
+  L: 3
+  T: 1 Min.
+  ID: 2203
+Planar Ally:
+  L: 6
+  T: 10 Min.
+  ID: 2204
+Planar Binding:
+  L: 5
+  T: 1 Hr.
+  ID: 2205
+Plane Shift:
+  L: 7
+  T: Action
+  ID: 2206
+Plant Growth:
+  L: 3
+  T: Action
+  ID: 2207
+Poison Spray:
+  L: Cantrip
+  T: Action
+  ID: 2208
+Polymorph:
+  L: 4
+  T: Action
+  ID: 2209
+Power Word Heal:
+  L: 9
+  T: Action
+  ID: 2366
+Power Word Kill:
+  L: 9
+  T: Action
+  ID: 2210
+Power Word Pain:
+  L: 7
+  T: Action
+  ID: 14520
+Power Word Stun:
+  L: 8
+  T: Action
+  ID: 2211
+Prayer of Healing:
+  L: 2
+  T: 10 Min.
+  ID: 2212
+Prestidigitation:
+  L: Cantrip
+  T: Action
+  ID: 2213
+Primal Savagery:
+  L: Cantrip
+  T: Action
+  ID: 14558
+Primordial Ward:
+  L: 6
+  T: Action
+  ID: 2395
+Prismatic Spray:
+  L: 7
+  T: Action
+  ID: 2214
+Prismatic Wall:
+  L: 9
+  T: Action
+  ID: 2215
+Produce Flame:
+  L: Cantrip
+  T: Action
+  ID: 2217
+Programmed Illusion:
+  L: 6
+  T: Action
+  ID: 2218
+Project Image:
+  L: 7
+  T: Action
+  ID: 2219
+Protection from Energy:
+  L: 3
+  T: Action
+  ID: 2220
+Protection from Evil and Good:
+  L: 1
+  T: Action
+  ID: 2221
+Protection from Poison:
+  L: 2
+  T: Action
+  ID: 2222
+Psychic Scream:
+  L: 9
+  T: Action
+  ID: 14592
+Pulse Wave:
+  L: 3
+  T: Action
+  ID: 416805
+Purify Food and Drink:
+  L: 1
+  T: Action
+  ID: 2223
+Pyrotechnics:
+  L: 2
+  T: Action
+  ID: 2396
+Raise Dead:
+  L: 5
+  T: 1 Hr.
+  ID: 2224
+Rary's Telepathic Bond:
+  L: 5
+  T: Action
+  ID: 2356
+Raulothim's Psychic Lance:
+  L: 4
+  T: Action
+  ID: 1183866
+Ravenous Void:
+  L: 9
+  T: Action
+  ID: 416806
+Ray of Enfeeblement:
+  L: 2
+  T: Action
+  ID: 2225
+Ray of Frost:
+  L: Cantrip
+  T: Action
+  ID: 2226
+Ray of Sickness:
+  L: 1
+  T: Action
+  ID: 2318
+Reality Break:
+  L: 8
+  T: Action
+  ID: 416807
+Regenerate:
+  L: 7
+  T: 1 Min.
+  ID: 2227
+Reincarnate:
+  L: 5
+  T: 1 Hr.
+  ID: 2228
+Remove Curse:
+  L: 3
+  T: Action
+  ID: 2229
+Resistance:
+  L: Cantrip
+  T: Action
+  ID: 2231
+Resurrection:
+  L: 7
+  T: 1 Hr.
+  ID: 2232
+Reverse Gravity:
+  L: 7
+  T: Action
+  ID: 2233
+Revivify:
+  L: 3
+  T: Action
+  ID: 2234
+Rime's Binding Ice:
+  L: 2
+  T: Action
+  ID: 1183867
+Rope Trick:
+  L: 2
+  T: Action
+  ID: 2235
+Sacred Flame:
+  L: Cantrip
+  T: Action
+  ID: 2236
+Sanctuary:
+  L: 1
+  T: Bonus
+  ID: 2237
+Sapping Sting:
+  L: Cantrip
+  T: Action
+  ID: 416808
+Scatter:
+  L: 6
+  T: Action
+  ID: 14593
+Scorching Ray:
+  L: 2
+  T: Action
+  ID: 2238
+Scrying:
+  L: 5
+  T: 10 Min.
+  ID: 2239
+Searing Smite:
+  L: 1
+  T: Bonus
+  ID: 2319
+See Invisibility:
+  L: 2
+  T: Action
+  ID: 2242
+Seeming:
+  L: 5
+  T: Action
+  ID: 2241
+Sending:
+  L: 3
+  T: Action
+  ID: 2243
+Sequester:
+  L: 7
+  T: Action
+  ID: 2244
+Shadow Blade:
+  L: 2
+  T: Bonus
+  ID: 14595
+Shadow of Moil:
+  L: 4
+  T: Action
+  ID: 14596
+Shape Water:
+  L: Cantrip
+  T: Action
+  ID: 2397
+Shapechange:
+  L: 9
+  T: Action
+  ID: 2245
+Shatter:
+  L: 2
+  T: Action
+  ID: 2246
+Shield:
+  L: 1
+  T: Reaction
+  ID: 2247
+Shield of Faith:
+  L: 1
+  T: Bonus
+  ID: 2248
+Shillelagh:
+  L: Cantrip
+  T: Bonus
+  ID: 2249
+Shocking Grasp:
+  L: Cantrip
+  T: Action
+  ID: 2250
+Sickening Radiance:
+  L: 4
+  T: Action
+  ID: 14597
+Silence:
+  L: 2
+  T: Action
+  ID: 2251
+Silent Image:
+  L: 1
+  T: Action
+  ID: 2252
+Silvery Barbs:
+  L: 1
+  T: Reaction
+  ID: 1239804
+Simulacrum:
+  L: 7
+  T: 12 Hr.
+  ID: 2253
+Skill Empowerment:
+  L: 5
+  T: Action
+  ID: 14599
+Skywrite:
+  L: 2
+  T: Action
+  ID: 2398
+Sleep:
+  L: 1
+  T: Action
+  ID: 2254
+Sleet Storm:
+  L: 3
+  T: Action
+  ID: 2255
+Slow:
+  L: 3
+  T: Action
+  ID: 2256
+Snare:
+  L: 1
+  T: 1 Min.
+  ID: 14600
+Snilloc's Snowball Swarm:
+  L: 2
+  T: Action
+  ID: 2399
+Soul Cage:
+  L: 6
+  T: Reaction
+  ID: 14601
+Spare the Dying:
+  L: Cantrip
+  T: Action
+  ID: 2257
+Speak with Animals:
+  L: 1
+  T: Action
+  ID: 2258
+Speak with Dead:
+  L: 3
+  T: Action
+  ID: 2259
+Speak with Plants:
+  L: 3
+  T: Action
+  ID: 2260
+Spider Climb:
+  L: 2
+  T: Action
+  ID: 2261
+Spike Growth:
+  L: 2
+  T: Action
+  ID: 2262
+Spirit Guardians:
+  L: 3
+  T: Action
+  ID: 2264
+Spirit Shroud:
+  L: 3
+  T: Bonus
+  ID: 718581
+Spiritual Weapon:
+  L: 2
+  T: Bonus
+  ID: 2263
+Staggering Smite:
+  L: 4
+  T: Bonus
+  ID: 2350
+Steel Wind Strike:
+  L: 5
+  T: Action
+  ID: 14602
+Stinking Cloud:
+  L: 3
+  T: Action
+  ID: 2265
+Stone Shape:
+  L: 4
+  T: Action
+  ID: 2267
+Stoneskin:
+  L: 4
+  T: Action
+  ID: 2266
+Storm Sphere:
+  L: 4
+  T: Action
+  ID: 2400
+Storm of Vengeance:
+  L: 9
+  T: Action
+  ID: 2268
+Suggestion:
+  L: 2
+  T: Action
+  ID: 2269
+Summon Aberration:
+  L: 4
+  T: Action
+  ID: 718613
+Summon Beast:
+  L: 2
+  T: Action
+  ID: 721187
+Summon Celestial:
+  L: 5
+  T: Action
+  ID: 721194
+Summon Construct:
+  L: 4
+  T: Action
+  ID: 721195
+Summon Draconic Spirit:
+  L: 5
+  T: Action
+  ID: 1183868
+Summon Elemental:
+  L: 4
+  T: Action
+  ID: 721199
+Summon Fey:
+  L: 3
+  T: Action
+  ID: 721204
+Summon Fiend:
+  L: 6
+  T: Action
+  ID: 719934
+Summon Greater Demon:
+  L: 4
+  T: Action
+  ID: 14603
+Summon Lesser Demons:
+  L: 3
+  T: Action
+  ID: 14604
+Summon Shadowspawn:
+  L: 3
+  T: Action
+  ID: 719948
+Summon Undead:
+  L: 3
+  T: Action
+  ID: 719951
+Sunbeam:
+  L: 6
+  T: Action
+  ID: 2270
+Sunburst:
+  L: 8
+  T: Action
+  ID: 2271
+Swift Quiver:
+  L: 5
+  T: Bonus
+  ID: 2357
+Sword Burst:
+  L: Cantrip
+  T: Action
+  ID: 2413
+Symbol:
+  L: 7
+  T: 1 Min.
+  ID: 2272
+Synaptic Static:
+  L: 5
+  T: Action
+  ID: 14605
+Tasha's Caustic Brew:
+  L: 1
+  T: Action
+  ID: 719953
+Tasha's Hideous Laughter:
+  L: 1
+  T: Action
+  ID: 2320
+Tasha's Mind Whip:
+  L: 2
+  T: Action
+  ID: 719959
+Tasha's Otherworldly Guise:
+  L: 6
+  T: Bonus
+  ID: 719961
+Telekinesis:
+  L: 5
+  T: Action
+  ID: 2273
+Telepathy:
+  L: 8
+  T: Action
+  ID: 2364
+Teleport:
+  L: 7
+  T: Action
+  ID: 2275
+Teleportation Circle:
+  L: 5
+  T: 1 Min.
+  ID: 2276
+Temple of the Gods:
+  L: 7
+  T: 1 Hr.
+  ID: 14606
+Temporal Shunt:
+  L: 5
+  T: Reaction
+  ID: 416809
+Tenser's Floating Disk:
+  L: 1
+  T: Action
+  ID: 2321
+Tenser's Transformation:
+  L: 6
+  T: Action
+  ID: 14612
+Tether Essence:
+  L: 7
+  T: Action
+  ID: 416810
+Thaumaturgy:
+  L: Cantrip
+  T: Action
+  ID: 2277
+Thorn Whip:
+  L: Cantrip
+  T: Action
+  ID: 2309
+Thunder Step:
+  L: 3
+  T: Action
+  ID: 14613
+Thunderclap:
+  L: Cantrip
+  T: Action
+  ID: 2401
+Thunderous Smite:
+  L: 1
+  T: Bonus
+  ID: 2322
+Thunderwave:
+  L: 1
+  T: Action
+  ID: 2278
+Tidal Wave:
+  L: 3
+  T: Action
+  ID: 2402
+Time Ravage:
+  L: 9
+  T: Action
+  ID: 416811
+Time Stop:
+  L: 9
+  T: Action
+  ID: 2279
+Tiny Servant:
+  L: 3
+  T: 1 Min.
+  ID: 14614
+Toll the Dead:
+  L: Cantrip
+  T: Action
+  ID: 14615
+Tongues:
+  L: 3
+  T: Action
+  ID: 2281
+Transmute Rock:
+  L: 5
+  T: Action
+  ID: 2403
+Transport via Plants:
+  L: 6
+  T: Action
+  ID: 2282
+Tree Stride:
+  L: 5
+  T: Action
+  ID: 2283
+True Polymorph:
+  L: 9
+  T: Action
+  ID: 2284
+True Resurrection:
+  L: 9
+  T: 1 Hr.
+  ID: 2285
+True Seeing:
+  L: 6
+  T: Action
+  ID: 2286
+True Strike:
+  L: Cantrip
+  T: Action
+  ID: 2287
+Tsunami:
+  L: 8
+  T: 1 Min.
+  ID: 2365
+Unseen Servant:
+  L: 1
+  T: Action
+  ID: 2288
+Vampiric Touch:
+  L: 3
+  T: Action
+  ID: 2289
+Vicious Mockery:
+  L: Cantrip
+  T: Action
+  ID: 2290
+Vitriolic Sphere:
+  L: 4
+  T: Action
+  ID: 2404
+Vortex Warp:
+  L: 2
+  T: Action
+  ID: 1239805
+Wall of Fire:
+  L: 4
+  T: Action
+  ID: 2291
+Wall of Force:
+  L: 5
+  T: Action
+  ID: 2292
+Wall of Ice:
+  L: 6
+  T: Action
+  ID: 2293
+Wall of Light:
+  L: 5
+  T: Action
+  ID: 14616
+Wall of Sand:
+  L: 3
+  T: Action
+  ID: 2405
+Wall of Stone:
+  L: 5
+  T: Action
+  ID: 2294
+Wall of Thorns:
+  L: 6
+  T: Action
+  ID: 2295
+Wall of Water:
+  L: 3
+  T: Action
+  ID: 2406
+Warding Bond:
+  L: 2
+  T: Action
+  ID: 2296
+Warding Wind:
+  L: 2
+  T: Action
+  ID: 2407
+Water Breathing:
+  L: 3
+  T: Action
+  ID: 2297
+Water Walk:
+  L: 3
+  T: Action
+  ID: 2298
+Watery Sphere:
+  L: 4
+  T: Action
+  ID: 2408
+Web:
+  L: 2
+  T: Action
+  ID: 2299
+Weird:
+  L: 9
+  T: Action
+  ID: 2300
+Whirlwind:
+  L: 7
+  T: Action
+  ID: 2409
+Wind Walk:
+  L: 6
+  T: 1 Min.
+  ID: 2301
+Wind Wall:
+  L: 3
+  T: Action
+  ID: 2302
+Wish:
+  L: 9
+  T: Action
+  ID: 2303
+Witch Bolt:
+  L: 1
+  T: Action
+  ID: 2323
+Wither and Bloom:
+  L: 2
+  T: Action
+  ID: 1239806
+Word of Radiance:
+  L: Cantrip
+  T: Action
+  ID: 14618
+Word of Recall:
+  L: 6
+  T: Action
+  ID: 2304
+Wrath of Nature:
+  L: 5
+  T: Action
+  ID: 14619
+Wrathful Smite:
+  L: 1
+  T: Bonus
+  ID: 2324
+Wristpocket:
+  L: 2
+  T: Action
+  ID: 416812
+Zephyr Strike:
+  L: 1
+  T: Bonus
+  ID: 14622
+Zone of Truth:
+  L: 2
+  T: Action
+  ID: 2305
