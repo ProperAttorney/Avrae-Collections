@@ -1,0 +1,54 @@
+a import <drac2>
+IDs = load_yaml(get_gvar("e808cf94-12fb-45c4-9fd1-dcaa0d39c841"))
+out = []
+
+aConvert = {
+	"Action": 1,
+	"Bonus": 3,
+	"Reaction": 4,
+	"1 Min.": 6,
+	"1 Hr.": 7
+}
+
+def automate(ability, ccname):
+	spell = ccname[ccname.index(":")+2:]
+
+	automation = {
+	"name": f"{ability}: {spell}",
+	"automation": [
+		{
+		"type": "counter",
+		"counter": ccname,
+		"amount": "1",
+		"errorBehaviour": "raise"
+		},
+		{
+		"type": "spell",
+		"id": IDs[spell]["ID"],
+		"level": IDs[spell]["L"]
+		}
+		],
+	"_v": 2,
+	"proper": "true",
+	"verb": "casts",
+	"activation_type": aConvert.get(IDs[spell]["T"],8)
+	}
+	return automation
+
+for cc in [x.name for x in character().consumables]:
+	if "Fey Touched" in cc and "Misty Step" not in cc:
+		out.append(automate("Fey Touched", cc))
+	elif "Shadow Touched" in cc and "Invisibility" not in cc:
+		out.append(automate("Shadow Touched", cc))
+	elif "Aberrant Dragonmark" in cc:
+		out.append(automate("Aberrant Dragonmark", cc))
+	elif "Mystic Arcanum" in cc:
+		out.append(automate("Mystic Arcanum", cc))
+	elif "Magic Initiate" in cc:
+		out.append(automate("Magic Initiate", cc))
+	elif "Mystic Arcanum" in cc:
+		out.append(automate("Artificer Initiate", cc))
+	elif "Strixhaven Initiate" in cc:
+		out.append(automate("Strixhaven Initiate", cc))
+return dump_yaml(out)
+</drac2>
