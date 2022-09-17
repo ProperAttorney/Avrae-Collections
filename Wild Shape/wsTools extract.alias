@@ -9,6 +9,10 @@ if not c:
 	err(f"This command must be used in initiative! Use `{pf}help {ctx.alias} extract` for more information.")
 
 targs = [c.get_combatant(x) for x in a.get("t")]
+
+if not targs:
+  err(f"No targets detected.  Check the instructions in `{pf}help {ctx.alias} extract` and make sure to target the monster you're trying to extract information from (`-t GO1`)")
+
 for t in targs:
 	toExport[t.monster_name] = {
     "pb" : t.stats.prof_bonus,
@@ -31,6 +35,9 @@ for t in targs:
     "speed": a.last("speed", "30 ft.").lower()
 	}
 
+if not toExport:
+  err(f"No data was collected from a combatant.  Check the instructions in `{pf}help {ctx.alias} extract` and make sure to target the monster you're trying to extract information from (`-t GO1`)")
+  
 for arg in &ARGS&:
 	if len(arg)==36:
 		existing = load_yaml(get_gvar(arg))
