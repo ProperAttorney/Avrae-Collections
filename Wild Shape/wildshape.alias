@@ -138,9 +138,9 @@ if c and c.me:
 	ACs.append(form["ac"] + ACbonus)
 	if settings.get("AltAC", "False").lower() == "true":
 		if ch.levels.get("Monk"):
-			ACs.append(10 + form["dex"]//2 + ch.stats.wisdom//2 + ACbonus)
+			ACs.append(10 + form["dex"]//2-5 + ch.stats.wisdom//2-5 + ACbonus)
 		if ch.levels.get("Barbarian"):
-			ACs.append(10 + form["dex"]//2 + form["con"]//2 + ACbonus)
+			ACs.append(10 + form["dex"]//2-5 + form["con"]//2-5 + ACbonus)
 	add_list.append(f"-ac {max(ACs)}")
 
 	out.append(" ".join(add_list))
@@ -152,7 +152,7 @@ if c and c.me:
 			if auto.get("type") == "target":
 				for ef in auto["effects"]:
 					if ef.get("type") == "attack":
-						ef["attackBonus"] += settings.get("AttackBonus", 0)
+						ef["attackBonus"] = settings.get("AttackBonus", 0) + int(ef["attackBonus"])
 						for subEf in ef["hit"]:
 							if subEf.get("type") == "damage":
 								subEf["damage"] =  settings.get("DamageBonus")+" + "+subEf["damage"] if settings.get("DamageBonus") else subEf["damage"]
