@@ -184,7 +184,7 @@ adv = a.adv(boolwise=True)
 reroll_number = ch.csettings.get("reroll", None)
 
 #grab a minimum from our args like a standard !check, (-mc #) or set it to 10 if the character has the csetting 'talent' set to True and has proficiency or expertise in the chosen skill.
-minimum_check = a.last('mc', None, int) or (10 if ch.csettings.get("talent", False) and ch.skills[skill].prof else None)
+minimum_check = a.last('mc', None, int) or (10 if ch.csettings.get("talent", False) and ch.skills[x["skill"]].prof>=1 else None)
 
 #grab our bonuses, if any and add them to our roll
 bonus = ("+"+a.join('b', '+', '') if a.get('b') else '')
