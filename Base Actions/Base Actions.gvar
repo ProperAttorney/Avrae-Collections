@@ -177,100 +177,98 @@
   proper: true
   activation_type: 1
 - _v: 2
-name: Grapple
-automation:
-  - type: target
-    target: self
-    effects:
-      - type: check
-        ability: athletics
-  - type: variable
-    name: Grapple
-    value: lastCheckRollTotal
-  - type: target
-    target: 1
-    effects:
-      - type: check
-        ability:
-          - acrobatics
-          - athletics
-        dc: Grapple
-        fail:
-          - type: ieffect2
-            name: Grappled
-            duration: null
-            effects: null
-            attacks: []
-            buttons:
-              - label: Escape Grapple
-                automation:
-                  - type: target
-                    target: children
-                    effects:
-                      - type: check
-                        ability:
-                          - athletics
-                        contestAbility:
-                          - acrobatics
-                          - athletics
-                        fail:
-                          - type: remove_ieffect
-                        contestTie: fail
-                        success: []
-                verb: attempts to break out of the grapple
-                style: "3"
-                defaultDC: null
-                defaultAttackBonus: null
-                defaultCastingMod: null
-            end: false
-            conc: false
-            desc: Grappled by {{caster.name}}
-            stacking: false
-            save_as: grapple
-            parent: null
-        success: []
-  - type: condition
-    condition: not lastCheckDidPass
-    onTrue:
-      - type: target
-        target: self
-        effects:
-          - type: ieffect2
-            name: Grappling
-            duration: null
-            effects: null
-            attacks: []
-            buttons:
-              - label: Release Grapple
-                automation:
-                  - type: remove_ieffect
-                    removeParent: always
-                verb: lets go of their target
-                style: "1"
-                defaultDC: null
-                defaultAttackBonus: null
-                defaultCastingMod: null
-            end: false
-            conc: false
-            desc: Grappling {{targets[0].name if str(targets[0])!=targets[0] else
-              targets[0]}}
-            stacking: false
-            save_as: null
-            parent: grapple
-    onFalse: []
-    errorBehaviour: "false"
-  - type: text
-    text: >-
-      When you want to grab a creature or wrestle with it, you can use the
-      Attack action to make a special melee attack, a grapple. If you’re able to
-      make multiple attacks with the Attack action, this attack replaces one of
-      them.
-
-
-      The target of your grapple must be no more than one size larger than you and must be within your reach. Using at least one free hand, you try to seize the target by making a grapple check instead of an attack roll: a Strength (Athletics) check contested by the target’s Strength (Athletics) or Dexterity (Acrobatics) check (the target chooses the ability to use). You succeed automatically if the target is incapacitated. If you succeed, you subject the target to the grappled condition. The condition specifies the things that end it, and you can release the target whenever you like (no action required).
-proper: true
-verb: tries to
-
+  name: Grapple
+  automation:
+    - type: target
+      target: self
+      effects:
+        - type: check
+          ability: athletics
+    - type: variable
+      name: Grapple
+      value: lastCheckRollTotal
+    - type: target
+      target: 1
+      effects:
+        - type: check
+          ability:
+            - acrobatics
+            - athletics
+          dc: Grapple
+          fail:
+            - type: ieffect2
+              name: Grappled
+              duration: null
+              effects: null
+              attacks: []
+              buttons:
+                - label: Escape Grapple
+                  automation:
+                    - type: target
+                      target: children
+                      effects:
+                        - type: check
+                          ability:
+                            - athletics
+                          contestAbility:
+                            - acrobatics
+                            - athletics
+                          fail:
+                            - type: remove_ieffect
+                          contestTie: fail
+                          success: []
+                  verb: attempts to break out of the grapple
+                  style: "3"
+                  defaultDC: null
+                  defaultAttackBonus: null
+                  defaultCastingMod: null
+              end: false
+              conc: false
+              desc: Grappled by {{caster.name}}
+              stacking: false
+              save_as: grapple
+              parent: null
+          success: []
+    - type: condition
+      condition: not lastCheckDidPass
+      onTrue:
+        - type: target
+          target: self
+          effects:
+            - type: ieffect2
+              name: Grappling
+              duration: null
+              effects: null
+              attacks: []
+              buttons:
+                - label: Release Grapple
+                  automation:
+                    - type: remove_ieffect
+                      removeParent: always
+                  verb: lets go of their target
+                  style: "1"
+                  defaultDC: null
+                  defaultAttackBonus: null
+                  defaultCastingMod: null
+              end: false
+              conc: false
+              desc: Grappling {{targets[0].name if str(targets[0])!=targets[0] else targets[0]}}
+              stacking: false
+              save_as: null
+              parent: grapple
+      onFalse: []
+      errorBehaviour: "false"
+    - type: text
+      text: >-
+        When you want to grab a creature or wrestle with it, you can use the
+        Attack action to make a special melee attack, a grapple. If you’re able to
+        make multiple attacks with the Attack action, this attack replaces one of
+        them.
+  
+  
+        The target of your grapple must be no more than one size larger than you and must be within your reach. Using at least one free hand, you try to seize the target by making a grapple check instead of an attack roll: a Strength (Athletics) check contested by the target’s Strength (Athletics) or Dexterity (Acrobatics) check (the target chooses the ability to use). You succeed automatically if the target is incapacitated. If you succeed, you subject the target to the grappled condition. The condition specifies the things that end it, and you can release the target whenever you like (no action required).
+  proper: true
+  verb: tries to
 - _v: 2
   name: Shove (Prone)
   automation:
