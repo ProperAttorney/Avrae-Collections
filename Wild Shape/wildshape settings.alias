@@ -41,15 +41,15 @@ SAVE_NAMES = (
 	"charismaSave"
 )
 
-SetOptions = [
-("RestrictKnown", str, "False"),
-("Note", str, "None."),
-("HPBonus", int, "0"),
-("ACBonus", int, "0"),
-("AltAC", str, "False"),
-("AttackBonus", int, "0"),
-("DamageBonus", str, "0")
-]
+SetOptions = {
+"RestrictKnown": "False",
+"Note": "None",
+"HPBonus": "0",
+"ACBonus": "0",
+"AltAC": "False",
+"AttackBonus": "0",
+"DamageBonus": "0"
+}
 
 ListOptions = [
 ("Proficient", str, "None"),
@@ -95,9 +95,12 @@ for ability in a.get("Save"):
 	if ability not in SAVE_NAMES:
 		err(f"""{skill} is not a valid save name. Use `{ctx.prefix}help {ctx.alias} settings` to see a full list of save names.""")		
 
-for option, oType, default in SetOptions:
+for option, default in SetOptions.items():
 	if a.last(option) != None:
-		settings[option] = a.last(option, type_=oType)
+		if option in ["HPBonus", "ACBonus", "AttackBonus"]:
+			settings[option] = a.last(option, type_ = int)
+		else:
+			settings[option] = a.last(option, type_ = str)
 	emb += f""" -f "{option}|{settings.get(option, default)}|inline" """
 
 for option, oType, default in ListOptions:
