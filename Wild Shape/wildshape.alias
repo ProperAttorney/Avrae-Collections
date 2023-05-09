@@ -23,7 +23,7 @@ for gvar in set(["413e9249-6296-468b-8c75-74c1bedeb276", "97f66515-10a4-4942-831
 	creatures.update(load_yaml(get_gvar(gvar)))
 
 # Error catching for the counter is missing.
-if not ch.cc_exists(cN):
+if dL < 20 and not ch.cc_exists(cN):
 	err(f"""You do not have a {cN} counter! See `!help cc create` for help making it manually.""")
 
 # Setting the maximum CR and limitations based on Druid level.
@@ -70,14 +70,13 @@ if settings.get("RestrictKnown", "False").lower() == "true":
 	if cName not in settings.get("Known",[]):
 		err(f"""You haven't seen {cName} before. Use `{pf}help {ctx.alias} settings` for instructions on adding known forms.""")
 
-# Error catching for not having enough uses of Wild Shape
-if not ch.get_cc(cN) and dL < 20:
-	err(f"""You are out of uses of {cN}!""")
-if ele and ch.get_cc(cN) < 2 and dL < 20:
-	err(f"""You need two uses of {cN} to turn into an elemental.""")
-
-# Actually modifying the cc value
 if dL < 20:
+	# Error catching for not having enough uses of Wild Shape
+	if not ch.get_cc(cN):
+		err(f"""You are out of uses of {cN}!""")
+	if ele and ch.get_cc(cN) < 2:
+		err(f"""You need two uses of {cN} to turn into an elemental.""")
+	# Actually modifying the cc value
 	if ele:
 		ch.mod_cc(cN,-2)
 	else:
