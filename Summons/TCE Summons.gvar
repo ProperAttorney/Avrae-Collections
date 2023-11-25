@@ -1,0 +1,94 @@
+Fey Spirit:
+  spell: Summon Fey
+  PB: 0
+  STR: 13
+  DEX: 16
+  CON: 14
+  INT: 14
+  WIS: 11
+  CHA: 16
+  CR: 0.0
+  exps: []
+  profs: []
+  saves: []
+  vuln: []
+  resists: []
+  immune:
+  - charmed
+  AC: 12
+  HP: 30
+  HPUpcast: 10
+  level: 3
+  type: Fey
+  senses:
+  - 10 PP
+  - 60 DV
+  subtypes:
+    Fuming:
+      attacks:
+        - attack:
+            name: Fey Step
+            automation:
+            - type: text
+              text: 'The fey magically teleports up to 30 feet to an unoccupied space it can see. The fey has advantage on the next attack roll it makes before the end of this turn.'
+            _v: 2
+            proper: false
+            activation_type: 3
+    Mirthful:
+      attacks:
+        - attack:
+            name: Fey Step
+            automation:
+            - type: target
+              target: all
+              effects:
+              - type: save
+                stat: dex
+                fail:
+                - type: ieffect2
+                  name: Charmed (Mirthful Fey Step)
+                  duration: "10"
+                  desc: Charmed until damage taken.
+                  buttons:
+                  - label: Remove Charm (Damaged)
+                    automation:
+                    - type: remove_ieffect
+                      verb: is No Longer Charmed
+                      style: "3"
+                success: []
+                dc: "{DC}"
+            - type: text
+              text: 'The fey magically teleports up to 30 feet to an unoccupied space it can see. The fey has advantage on the next attack roll it makes before the end of this turn. The fey can force one creature it can see within 10 feet of it to make a Wisdom saving throw against your spell save DC ({DC}). Unless the save succeeds, the target is charmed by you and the fey for 1 minute or until the target takes any damage.'
+            _v: 2
+            proper: false
+            activation_type: 3
+    Tricksy:
+      attacks:
+        - attack:
+            name: Fey Step
+            automation:
+            - type: text
+              text: 'The fey magically teleports up to 30 feet to an unoccupied space it can see. The fey can fill a 5-foot cube within 5 feet of it with magical darkness, which lasts until the end of its next turn.'
+            _v: 2
+            proper: false
+            activation_type: 3
+  attacks:
+  - attack:
+      name: Shortsword
+      automation:
+      - type: target
+        target: each
+        effects:
+        - type: attack
+          hit:
+          - type: damage
+            damage: 1d6 + 3 + {spellLevel}[piercing] + 1d6 [force]
+            overheal: false
+          miss: []
+          attackBonus: "{SAB}"
+      - type: text
+        text: '*Melee Weapon Attack:* +{SAB} to hit, reach 5 ft., one target. *Hit:* (1d6 + 3 + {spellLevel}) piercing damage + (1d6) force damage'
+      _v: 2
+  speed:
+  - 40 ft.
+  source: TCE
