@@ -1,0 +1,146 @@
+<drac2>
+pf = ctx.prefix
+a = argparse(&ARGS&)
+n = "\n"
+c = combat()
+ch = character()
+settings = load_yaml(ch.cvars.get("wsSettings", "{}"))
+open_b, close_b = "<"+"drac2"+">", "</"+"drac2"+">"
+out = []
+
+# Build a dictionary of personal, and server summon spells.
+spells = {}
+for gvar in set(load_yaml(get("summonSubscriptions","[]")) + load_yaml(get_svar("summonSubscriptions","[]"))):
+	spells.update(load_yaml(get_gvar(gvar)))
+
+# Match the input spell to catalog of spells.
+match = []
+for spell in spells:
+	if "&1&".lower().strip(""""'""") == spell.lower():
+		match = [spell]
+		break
+	elif "&1&".lower().strip(""""'""") in spell.lower():
+		match.append(spell)
+
+# Error catching for if the input results in a valid matched spell.
+if len(match) == 0:
+	err(f"""There were no matched spells. Please check your spelling!
+		Input: %*%
+		Options:
+		```
+		{n.join(spells)}
+		```""")
+elif len(match) > 1:
+	err(f"""There were too many matched spells. Please be more verbose!
+		Input: %*%
+		Matches:
+		```
+		{n.join(match)}
+		```""")
+
+# Set the spell to be match from the list of spells
+spell = match[0]
+
+if not ch.spellbook.find(spells[spell]["spell"]):
+	err(f"""You do not know the spell {spells[spell]["spell"]}.""")
+
+# Checks if the second argument is a valid subtype for the summon spell
+match = []
+for subtype in spells[spell]["subtypes"]:
+	if "&2&".lower().strip(""""'""") == subtype.lower():
+		match = [subtype]
+		break
+	elif "&2&".lower().strip(""""'""") in subtype.lower():
+		match.append(subtype)
+
+# Error catching for if the input results in a valid matched spell.
+if len(match) == 0:
+	err(f"""There were no matched subtypes. Please check your spelling!
+		Input: %*%
+		Options:
+		```
+		{n.join(spells[spell]["subtypes"])}
+		```""")
+elif len(match) > 1:
+	err(f"""There were too many matched spells. Please be more verbose!
+		Input: %*%
+		Matches:
+		```
+		{n.join(match)}
+		```""")
+
+subtype = match[0]
+
+spellLevel = a.last("l", spells[spell]["level"], type_=int)
+ch.spellbook.use_slot(spellLevel)
+
+# Translation variables
+# spellLevel = Spell Level
+# SAB = spell attack bonus
+# MOD = spellcasting ability modifier
+# DC = spellcasting save DC
+form = load_yaml(dump_yaml(spells[spell]).replace("{SAB}", str(ch.spellbook.find(spells[spell]["spell"])[0].sab)).replace("{DC}", str(ch.spellbook.find(spells[spell]["spell"])[0].dc)).replace("{MOD}", str(ch.spellbook.find(spells[spell]["spell"])[0].mod)).replace("{spellLevel}", str(spellLevel)))
+subform = form["subtypes"][subtype]
+
+out.append(f"""{pf}tembed -title "{name} Summons A {subtype} {spell}!" -f "Spell Slots|{ch.spellbook.slots_str(spellLevel)}" -footer "{pf+ctx.alias} | Made by .juliuscaesar" -color {color} -thumb {image}""")
+if c and c.me:
+	if not c.me.group:
+		group = f"{name} (Summons)"
+		out.append(f"""{pf}i opt "{name}" -group "{group}" """)
+	else:
+		group = c.me.group
+
+	add_list = [
+	f"""{pf}i add 0 "{subtype} {spell} ({name})" """,
+	f"""-group "{group}" """,
+	f"""-pb {ch.stats.prof_bonus}""",
+	f"""-strength {form["STR"]}""",
+	f"""-dexterity {form["DEX"]}""",
+	f"""-constitution {form["CON"]}""",
+	f"""-intelligence {form["INT"]}""",
+	f"""-wisdom {form["WIS"]}""",
+	f"""-charisma {form["CHA"]}""",
+	f"""-type {form["type"]}""",
+	f"""-note "{", ".join(form["speed"] + subform.get("speed", []))} | {", ".join(form["senses"] + subform.get("senses", ""))}{f''' | {settings.get("Note","")}''' if settings.get("Note","") else ""}" """,
+	f"""-hp {form["HP"] + subform.get("HPBonus",0) + (form["HPUpcast"] + subform.get("HPUpcast",0))*(spellLevel-form["level"]) + settings.get("HPBonus",0)}""",
+	f"""-ac {form["AC"] + subform.get("ACBonus",0) + spellLevel + settings.get("ACBonus", 0)}""",
+	]
+
+	profs = form["profs"] + settings.get("Proficient", [])
+	add_list.extend([f"-prof {x}" for x in profs])
+
+	exps = form["exps"] + settings.get("Expert", [])
+	add_list.extend([f"-exp {x}" for x in exps])
+
+	saves = form["saves"] + settings.get("Save", [])
+	add_list.extend([f"-save {x}" for x in saves])
+
+	immune = form["immune"] + settings.get("Immune", [])
+	add_list.extend([f'-immune "{x}"' for x in immune])
+
+	resists = form["resists"] + settings.get("Resistant", [])
+	add_list.extend([f'-resist "{x}"' for x in resists])
+
+	vulns = form["vuln"] + settings.get("Vulnerable", [])
+	add_list.extend([f'-vuln "{x}"' for x in vulns])
+
+	out.append(" ".join(add_list))
+
+	out.append(out.pop(0))
+
+	attacks = form["attacks"] + subform.get("attacks", [])
+
+	for attack in attacks:
+		for auto in attack["attack"]["automation"]:
+			if auto.get("type") == "target":
+				for ef in auto["effects"]:
+					if ef.get("type") == "attack":
+						ef["attackBonus"] = settings.get("AttackBonus", 0) + int(ef["attackBonus"])
+						for subEf in ef["hit"]:
+							if subEf.get("type") == "damage":
+								subEf["damage"] =  settings.get("DamageBonus")+" + "+subEf["damage"] if settings.get("DamageBonus") else subEf["damage"]
+
+	out[-1] += (f""" {open_b}combat().get_combatant("{spell} ({name})").add_effect(name="Attacks",attacks=load_yaml('''{dump_yaml(attacks)}''')){close_b}""")
+	
+return f'multiline{n}{n.join(out)}'
+</drac2>
