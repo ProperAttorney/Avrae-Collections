@@ -2,7 +2,8 @@
 ch = character()
 settings = load_yaml(ch.cvars.get("wsSettings", "{}"))
 a = argparse(&ARGS&)
-emb = f"""embed -title "{name}'s Wild Shape Settings" -footer "{ctx.prefix+ctx.alias} | Made by Julius Caesar#3180" -color {color} -thumb {image}"""
+n = "\n"
+emb = f"""embed -title "{name}'s Wild Shape Settings" -footer "{ctx.prefix+ctx.alias} | Made by .juliuscaesar" -color {color} -thumb {image}"""
 
 SKILL_NAMES = (
     "acrobatics",
@@ -43,6 +44,7 @@ SAVE_NAMES = (
 
 SetOptions = [
 ("RestrictKnown", str, "False"),
+("EffectCopy", str, "True"),
 ("Note", str, "None."),
 ("HPBonus", int, "0"),
 ("ACBonus", int, "0"),
@@ -61,6 +63,10 @@ ListOptions = [
 ("Known", str, "None")
 ]
 
+DictOptions = [
+("Personal", str, "None")
+]
+
 # Transfer cvar subs to uvar.
 if (cGVARS := load_yaml(ch.cvars.get("wsCreatures","[]"))):
 	cGVARS += load_yaml(get("wsSubscriptions", "[]"))
@@ -73,27 +79,42 @@ for gvar in set(["413e9249-6296-468b-8c75-74c1bedeb276", "97f66515-10a4-4942-831
 	creatures.update(load_yaml(get_gvar(gvar)))
 
 creatureNames = [x.lower() for x in creatures.keys()]
-known = settings.get("Known", [])
+known = [x.lower() for x in settings.get("Known", [])]
+settings["Personal"] = settings.get("Personal", {})
+
+for personalization in a.get("name"):
+	if (beast := personalization.split("|")[0].lower()) not in creatureNames:
+		err(f"""`{beast}` is not a valid creature. Use `{ctx.prefix+ctx.alias} list all` to see a full list of valid creature names.""")
+	settings["Personal"][beast] = settings["Personal"].get(beast, {})
+	settings["Personal"][beast]["name"] = personalization.split("|")[1]
+
+for personalization in a.get("image"):
+	if (beast := personalization.split("|")[0].lower()) not in creatureNames:
+		err(f"""`{beast}` is not a valid creature. Use `{ctx.prefix+ctx.alias} list all` to see a full list of valid creature names.""")
+	settings["Personal"][beast] = settings["Personal"].get(beast, {})
+	settings["Personal"][beast]["image"] = personalization.split("|")[1]
 
 for creature in a.get("learn"):
+	if creature.lower() in known:
+		err(f"""`{creature.title()}` is already a known creature. Use `{ctx.prefix+ctx.alias} list all` to see a full list of valid creature names.""")
 	if creature.lower() in creatureNames:
 		known.append(creature.lower())
 	else:
-		err(f"""{creature.title()} is not a valid creature. Use `{ctx.prefix+ctx.alias} list all` to see a full list of valid creature names.""")
+		err(f"""`{creature.title()}` is not a valid creature. Use `{ctx.prefix+ctx.alias} list all` to see a full list of valid creature names.""")
 
 for creature in a.get("forget"):
-	if creature.lower() in settings.get("Known",[]):
+	if creature.lower() in known:
 		known.remove(creature.lower())
 	else:
-		err(f"""{creature.title()} is not a valid creature. Use `{ctx.prefix+ctx.alias} settings` to see known creature names.""")
+		err(f"""`{creature.title()}` is not a known creature. Use `{ctx.prefix+ctx.alias} settings` to see known creature names.""")
 settings["Known"] = known
 
 for skill in a.get("Proficient") + a.get("Expert"):
 	if skill not in SKILL_NAMES:
-		err(f"""{skill} is not a valid skills name. Use `{ctx.prefix}help {ctx.alias} settings` to see a full list of skill names.""")
+		err(f"""`{skill}` is not a valid skill name. Use `{ctx.prefix}help {ctx.alias} settings` to see a full list of skill names.""")
 for ability in a.get("Save"):
 	if ability not in SAVE_NAMES:
-		err(f"""{skill} is not a valid save name. Use `{ctx.prefix}help {ctx.alias} settings` to see a full list of save names.""")		
+		err(f"""`{ability}` is not a valid save name. Use `{ctx.prefix}help {ctx.alias} settings` to see a full list of save names.""")		
 
 for option, oType, default in SetOptions:
 	if a.last(option) != None:
@@ -104,6 +125,16 @@ for option, oType, default in ListOptions:
 	if a.last(option):
 		settings[option] = a.get(option, type_=oType)
 	emb += f""" -f "{option}|{", ".join([x.title() for x in settings[option]]) if settings.get(option) else default.title()}|inline" """
+
+for reset in a.get("reset"):
+	if settings.get("Personal", {}).get(reset.lower()):
+		settings["Personal"].pop(reset.lower())
+
+if settings.get("Personal"):
+	entries = []
+	for entry in settings.get("Personal"):
+		entries.append(f"""{f'''[{entry.title()}]({settings["Personal"][entry]["image"]})''' if settings["Personal"][entry].get("image") else entry.title()}{f''' - {settings["Personal"][entry]["name"]}''' if settings["Personal"][entry].get("name") else ''}""")
+	emb += f''' -f """Personalizations|{n.join(entries)}""" '''
 
 ch.set_cvar("wsSettings", dump_yaml(settings))
 return emb
