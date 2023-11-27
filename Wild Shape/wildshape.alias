@@ -58,16 +58,20 @@ cName = match[0]
 ele = "elemental" in cName.lower()
 
 # Error catching for if the matched creature is not allowed.
+notMoonText = ""
+if not moon:
+	notMoonText = "\n\nIf you are a Moon Druid, use [`!level`](https://avrae.io/dashboard/workshop/5f7385fe647bb0a416316d1d) or [`!classinfo`](https://avrae.io/dashboard/workshop/65525da6fe08d18dde41a39c) to set your subclass."
+
 if ele and (not moon or dL < 10):
-	err(f"""Only Moon Druids of level 10 or higher can {cN} into elementals.""")
+	err(f"""Only Moon Druids of level 10 or higher can {cN} into elementals.{notMoonText}""")
 if creatures[cName]["cr"] > maxCR and not ele:
-	err(f"""You can only {cN} into a creature up to CR {maxCR}. {cName} is CR {creatures[cName]["cr"]}.""")
+	err(f"""You can only {cN} into a creature up to CR {maxCR}. {cName} is CR {creatures[cName]["cr"]}.{notMoonText}""")
 if any([x.lower() in creatures[cName]["speed"].lower() for x in limitation]):
-	err(f"""You are unable {cN} into creatures with a {" or ".join(limitation)} speed.""")
+	err(f"""You are unable to {cN} into creatures with a {" or ".join(limitation)} speed.""")
 
 # Error catching for if Known Creatures setting is enabled
 if settings.get("RestrictKnown", "False").lower() == "true":
-	if cName not in settings.get("Known",[]):
+	if cName.lower() not in settings.get("Known",[]):
 		err(f"""You haven't seen {cName} before. Use `{pf}help {ctx.alias} settings` for instructions on adding known forms.""")
 
 if dL < 20:
@@ -83,15 +87,17 @@ if dL < 20:
 		ch.mod_cc(cN,-1)
 
 form = creatures[cName]
+perName = settings.get("Personal", {}).get(cName.lower(), {}).get("name", f"""{cName} ({name})""")
+perImage = settings.get("Personal", {}).get(cName.lower(), {}).get("image", image)
 
-out.append(f"""{pf}tembed -title "{name} Wild Shapes Into A {cName}!" -f "{cN}|{"Unlimited" if dL > 19 else f"{ch.cc_str(cN)}(-2)" if ele else f"{ch.cc_str(cN)}(-1)"}" -footer "{pf+ctx.alias} | Made by Julius Caesar#3180" -color {color} -thumb {image}""")
+out.append(f"""{pf}tembed -title "{name} Wild Shapes Into A {cName}!" -f "{cN}|{"Unlimited" if dL > 19 else f"{ch.cc_str(cN)}(-2)" if ele else f"{ch.cc_str(cN)}(-1)"}" -footer "{pf+ctx.alias} | Made by .juliuscaesar" -color {color} -thumb {perImage}""")
 if c and c.me:
 	wsMeta = load_yaml(c.get_metadata("Wild Shape","{}"))
 
 	if (oID := wsMeta.get(name)) and (oCmbt := c.get_combatant(oID, strict=True)):
 		out.append(f"""{pf}i remove "{oCmbt.name}" """)
 		c.me.modify_hp(min(0, oCmbt.hp))
-		out.append(f"""{pf}embed -title "{name} Ends Their Wild Shape" -f "Damage Transfered|{c.me.hp_str()} ({min(0, oCmbt.hp)})" -footer "{pf}{ctx.alias} | Made by Julius Caesar#3180" -thumb {image} -color {color}""")
+		out.append(f"""{pf}embed -title "{name} Ends Their Wild Shape" -f "Damage Transfered|{c.me.hp_str()} ({min(0, oCmbt.hp)})" -footer "{pf}{ctx.alias} | Made by .juliuscaesar" -thumb {image} -color {color}""")
 	if not c.me.group:
 		g = f"""-group "{name} (Wild Shape)" """
 		out.append(f"""{pf}i opt "{name}" {g}""")
@@ -99,7 +105,7 @@ if c and c.me:
 		g = f"""-group "{c.me.group}" """
 
 	add_list = [
-	f"""{pf}i add 0 "{cName} ({name})" """,
+	f"""{pf}i add 0 "{perName}" """,
 	g,
 	f"""-pb {max(ch.stats.prof_bonus,form["pb"])}""",
 	f"""-strength {form["str"]}""",
@@ -156,9 +162,12 @@ if c and c.me:
 							if subEf.get("type") == "damage":
 								subEf["damage"] =  settings.get("DamageBonus")+" + "+subEf["damage"] if settings.get("DamageBonus") else subEf["damage"]
 
-	out[-1] += (f""" {open_b}combat().get_combatant("{cName} ({name})").add_effect(name="Attacks",{'''passive_effects=load_yaml({"magical_damage": True}),''' if dL > 5 and moon else ""}attacks=load_yaml('''{dump_yaml(form["attacks"])}''')){close_b}""")
+	out[-1] += (f""" {open_b}combat().get_combatant("{perName}").add_effect(name="Attacks",{'''passive_effects=load_yaml({"magical_damage": True}),''' if dL > 5 and moon else ""}attacks=load_yaml('''{dump_yaml(form["attacks"])}''')){close_b}""")
+	if settings.get("EffectCopy", "True").lower() == "true":
+		for effect in c.me.effects:
+			out[-1] += (f""" {open_b}combat().get_combatant("{perName}").add_effect("{effect.name}", duration={effect.remaining}, concentration={effect.conc}, parent=combat().me.get_effect("{effect.name}").parent, end={effect.ticks_on_end}, desc="{effect.desc}", passive_effects={effect.effect}, attacks={effect.attacks}, buttons={effect.buttons}){close_b}""")
 	out[-1] += (f""" {open_b}wsMeta = load_yaml('''{wsMeta}'''){close_b}""")
-	out[-1] += (f""" {open_b}wsMeta["{name}"] = combat().get_combatant("{cName} ({name})", strict=True).id{close_b}""")
+	out[-1] += (f""" {open_b}wsMeta["{name}"] = combat().get_combatant("{perName}", strict=True).id{close_b}""")
 	out[-1] += (f""" {open_b}combat().set_metadata("Wild Shape", dump_yaml(wsMeta)){close_b}""")
 	
 return f'multiline{n}{n.join(out)}'
